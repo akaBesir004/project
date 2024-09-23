@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e4f;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 80%;
+            background-color: #151539;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pricing-table thead {
+            background-color: #27285C;
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+            padding: 15px;
+            border: 1px solid #27285C;
+        }
+
+        .pricing-table th {
+            color: #ffffff;
+        }
+
+        .pricing-table td {
+            background-color: #1d1d5e;
+            color: #c4c4f9;
+        }
+
+        .plan-button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .plan-button:hover {
+            background-color: #2563eb;
+        }
+
+        /* Mobile version styles */
+        @media (max-width: 768px) {
+            .pricing-table {
+                display: none;
+            }
+
+            .card-container {
+                display: flex;
+                overflow: hidden;
+                width: 100%;
+                position: relative;
+            }
+
+            .card {
+                flex: 1;
+                background-color: #1d1d5e;
+                color: #c4c4f9;
+                padding: 20px;
+                margin: 10px;
+                border-radius: 10px;
+                min-width: 100%;
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .card h3 {
+                font-size: 24px;
+                color: #fdd835;
+                margin-bottom: 10px;
+            }
+
+            .slider-buttons {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .slider-buttons button {
+                background-color: #3b82f6;
+                color: white;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Choose Your Plan</h1>
+        <!-- Pricing table for desktop -->
+        <table class="pricing-table">
+            <thead>
+                <tr>
+                    <th>Plan</th>
+                    <th>$6,000</th>
+                    <th>$15,000</th>
+                    <th>$25,000</th>
+                    <th>$50,000</th>
+                    <th>$100,000</th>
+                    <th>$200,000</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Profit Target</td>
+                    <td>8%</td>
+                    <td>8%</td>
+                    <td>8%</td>
+                    <td>8%</td>
+                    <td>8%</td>
+                    <td>8%</td>
+                </tr>
+                <tr>
+                    <td>Max Daily Loss</td>
+                    <td>5%</td>
+                    <td>5%</td>
+                    <td>5%</td>
+                    <td>5%</td>
+                    <td>5%</td>
+                    <td>5%</td>
+                </tr>
+                <tr>
+                    <td>Max Overall Loss</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                </tr>
+                <tr>
+                    <td>15% Profit Share From Challenge Phase</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Balance Based Drawdown</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Fee</td>
+                    <td>$59</td>
+                    <td>$119</td>
+                    <td>$199</td>
+                    <td>$299</td>
+                    <td>$549</td>
+                    <td>$999</td>
+                </tr>
+                <tr>
+                    <td>Billing</td>
+                    <td>Monthly</td>
+                    <td>Monthly</td>
+                    <td>Monthly</td>
+                    <td>Monthly</td>
+                    <td>Monthly</td>
+                    <td>Monthly</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="plan-button">Get Plan</button></td>
+                    <td><button class="plan-button">Get Plan</button></td>
+                    <td><button class="plan-button">Get Plan</button></td>
+                    <td><button class="plan-button">Get Plan</button></td>
+                    <td><button class="plan-button">Get Plan</button></td>
+                    <td><button class="plan-button">Get Plan</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Card slider for mobile 
+         
+        <div class="card-container" id="cardContainer">
+           
+        </div>
+        <div class="slider-buttons">
+            <button id="prevBtn">Previous</button>
+            <button id="nextBtn">Next</button>
+        </div>
+        -->
+    </div>
+
+    <script>
+        const plans = [
+            { plan: '$6,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$59', billing: 'Monthly' },
+            { plan: '$15,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$119', billing: 'Monthly' },
+            { plan: '$25,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$199', billing: 'Monthly' },
+            { plan: '$50,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$299', billing: 'Monthly' },
+            { plan: '$100,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$549', billing: 'Monthly' },
+            { plan: '$200,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$999', billing: 'Monthly' }
+        ];
+
+        const cardContainer = document.getElementById('cardContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+
+        // Function to create a card
+        function createCard(plan) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+                <h3>${plan.plan}</h3>
+                <p>Profit Target: ${plan.profitTarget}</p>
+                <p>Max Daily Loss: ${plan.maxDailyLoss}</p>
+                <p>Max Overall Loss: ${plan.maxOverallLoss}</p>
+                <p>${plan.profitShare}</p>
+                <p>${plan.drawdown}</p>
+                <p>Fee: ${plan.fee}</p>
+                <p>Billing: ${plan.billing}</p>
+                <button class="plan-button">Get Plan</button>
+            `;
+            return card;
+        }
+
+        // Function to render cards
+        function renderCards() {
+            cardContainer.innerHTML = '';
+            const card = createCard(plans[currentIndex]);
+            cardContainer.appendChild(card);
+        }
+
+        // Event listeners for slider buttons
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = plans.length - 1;
+            }
+            renderCards();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < plans.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            renderCards();
+        });
+
+        // Initial render
+        renderCards();
+    </script>
+</body>
+</html>
