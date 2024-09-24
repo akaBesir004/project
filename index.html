@@ -3,287 +3,446 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing Plans</title>
+    <title>Pricing Cards</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #1e1e4f;
-            color: white;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
 
-        .container {
-            width: 80%;
-            background-color: #151539;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
-        }
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+   
+}
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #fff;
-        }
+.phase-buttons {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #627e93;
+    border-radius: 50px;
+   
+}
 
-        .pricing-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 0 auto;
-            text-align: center;
-        }
+.phase-buttons button {
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    padding: 0px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    margin: 10px;
+    outline: 3px solid #ac8c44;
+    outline-offset: 2px;
+    transition: outline-width 0.2s ease; /* Transition for outline */
+    z-index: 2;
+    width: fit-content;
+    height: 40px;
+}
 
-        .pricing-table thead {
-            background-color: #27285C;
-        }
+.phase-buttons button.active {
+    background-color: #AC8C44;
+}
 
-        .pricing-table th,
-        .pricing-table td {
-            padding: 15px;
-            border: 1px solid #27285C;
-        }
+.phase-buttons button:hover {
+    outline-width: 4px; /* Increased outline width on hover */
+}
 
-        .pricing-table th {
-            color: #ffffff;
-        }
 
-        .pricing-table td {
-            background-color: #1d1d5e;
-            color: #c4c4f9;
-        }
 
-        .plan-button {
-            background-color: #3b82f6;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
 
-        .plan-button:hover {
-            background-color: #2563eb;
-        }
+.slider {
+    display: flex;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.5s ease;
+    flex-wrap: wrap;
+}
 
-        /* Mobile version styles */
-        @media (max-width: 768px) {
-            .pricing-table {
-                display: none;
-            }
+.card {
+    background-color: #fff;
+    border-radius: 10%; /* Top and bottom border radius */
+    box-shadow: 0 0 15px 10px #ac8c44;/* Strong shadow with #AC8C44 */
+    width: 500px;
+    margin: 0 10px;
+    text-align: center;
+    color: #000;
+    transition: transform 0.3s ease-in-out;
+    flex: 0 0 auto;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-            .card-container {
-                display: flex;
-                overflow: hidden;
-                width: 100%;
-                position: relative;
-            }
+.price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
 
-            .card {
-                flex: 1;
-                background-color: #1d1d5e;
-                color: #c4c4f9;
-                padding: 20px;
-                margin: 10px;
-                border-radius: 10px;
-                min-width: 100%;
-                transition: transform 0.3s ease-in-out;
-            }
+.price {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ac8c44;
+    font-size: 48px;
+    margin-left: 35px;
+    margin-top: 15px;
 
-            .card h3 {
-                font-size: 24px;
-                color: #fdd835;
-                margin-bottom: 10px;
-            }
+     /* Changed to the gold color */
+}
 
-            .slider-buttons {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                margin-top: 20px;
-            }
+.actual-price {
+    font-size: 20px; /* Reduced font size for black price */
+    margin-top: 5px;
+    font-weight: bold;
+    color: #000; /* Black price */
+    
+}
 
-            .slider-buttons button {
-                background-color: #3b82f6;
-                color: white;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-        }
+.table-wrapper {
+    padding: 10px;
+}
+
+.table-wrapper td:first-child {
+    font-weight: bold;
+    text-align: left;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    border: 1px solid #AC8C44; /* Changed border to the gold color */
+    padding: 8px;
+    font-size: 14px;
+}
+
+th {
+    background-color: transparent;
+}
+
+.btn {
+    background-color: #fff; /* Changed button background to white */
+    color: #AC8C44; /* Text color set to gold */
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    border-radius: 50px;
+    padding: 12px 25px;
+    font-size: 20px; /* Increased font size for button */
+    font-weight: 700;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    outline: 3px solid #ac8c44;
+    outline-offset: 2px;
+    transition: outline .2s ease;
+    z-index: 2;
+    max-height: 50px;
+    max-width: 200px;
+}
+
+.btn:hover{
+
+    outline-width: 4px; 
+}
+
+.funded-info {
+    display: none;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 15px;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+}
+
+.arrow-left {
+    left: 20px;
+}
+
+.arrow-right {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        scroll-snap-align: center;
+    }
+
+     .phase-buttons button {
+        font-size: 18px; /* Reduce font size */
+        padding: 5px 15px; /* Adjust padding */
+        width: 150px; /* Decrease width */
+        height: 40px; /* Decrease height */
+    }
+
+    .arrow {
+        display: none;
+    }
+}
+
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Choose Your Plan</h1>
-        <!-- Pricing table for desktop -->
-        <table class="pricing-table">
-            <thead>
-                <tr>
-                    <th>Plan</th>
-                    <th>$6,000</th>
-                    <th>$15,000</th>
-                    <th>$25,000</th>
-                    <th>$50,000</th>
-                    <th>$100,000</th>
-                    <th>$200,000</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Profit Target</td>
-                    <td>8%</td>
-                    <td>8%</td>
-                    <td>8%</td>
-                    <td>8%</td>
-                    <td>8%</td>
-                    <td>8%</td>
-                </tr>
-                <tr>
-                    <td>Max Daily Loss</td>
-                    <td>5%</td>
-                    <td>5%</td>
-                    <td>5%</td>
-                    <td>5%</td>
-                    <td>5%</td>
-                    <td>5%</td>
-                </tr>
-                <tr>
-                    <td>Max Overall Loss</td>
-                    <td>10%</td>
-                    <td>10%</td>
-                    <td>10%</td>
-                    <td>10%</td>
-                    <td>10%</td>
-                    <td>10%</td>
-                </tr>
-                <tr>
-                    <td>15% Profit Share From Challenge Phase</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>Balance Based Drawdown</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                </tr>
-                <tr>
-                    <td>Fee</td>
-                    <td>$59</td>
-                    <td>$119</td>
-                    <td>$199</td>
-                    <td>$299</td>
-                    <td>$549</td>
-                    <td>$999</td>
-                </tr>
-                <tr>
-                    <td>Billing</td>
-                    <td>Monthly</td>
-                    <td>Monthly</td>
-                    <td>Monthly</td>
-                    <td>Monthly</td>
-                    <td>Monthly</td>
-                    <td>Monthly</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><button class="plan-button">Get Plan</button></td>
-                    <td><button class="plan-button">Get Plan</button></td>
-                    <td><button class="plan-button">Get Plan</button></td>
-                    <td><button class="plan-button">Get Plan</button></td>
-                    <td><button class="plan-button">Get Plan</button></td>
-                    <td><button class="plan-button">Get Plan</button></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="phase-buttons">
+            <button id="phase1-btn" class="active" onclick="selectPhase(1)">1 PHASE</button>
+            <button id="phase2-btn" onclick="selectPhase(2)">2 PHASE</button>
+        </div>
 
-        <!-- Card slider for mobile 
-         
-        <div class="card-container" id="cardContainer">
-           
-        </div>
-        <div class="slider-buttons">
-            <button id="prevBtn">Previous</button>
-            <button id="nextBtn">Next</button>
-        </div>
-        -->
+        <button class="arrow arrow-left" onclick="slideLeft()">&#10094;</button>
+
+        <div class="slider" id="card-slider"></div>
+
+        <button class="arrow arrow-right" onclick="slideRight()">&#10095;</button>
     </div>
 
     <script>
-        const plans = [
-            { plan: '$6,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$59', billing: 'Monthly' },
-            { plan: '$15,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$119', billing: 'Monthly' },
-            { plan: '$25,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$199', billing: 'Monthly' },
-            { plan: '$50,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$299', billing: 'Monthly' },
-            { plan: '$100,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$549', billing: 'Monthly' },
-            { plan: '$200,000', profitTarget: '8%', maxDailyLoss: '5%', maxOverallLoss: '10%', profitShare: '15% Profit Share From Challenge Phase', drawdown: 'Balance Based Drawdown', fee: '$999', billing: 'Monthly' }
-        ];
-
-        const cardContainer = document.getElementById('cardContainer');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
         let currentIndex = 0;
+        let currentPhase = 1; // Track current phase
+        const cardsData = {
+            1: [ // Phase 1 Data
+                { 
+                    price: "$5K", 
+                    actualPrice: "$69.00", 
+                    features: ["10%", "Unlimited", "5 Days", "4%", "7%", "-", "60%"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=fc1dc79c-6341-4823-9352-0cec3dda1db2" 
+                },
+                { 
+                    price: "$10K", 
+                    actualPrice: "$129.00", 
+                    features: ["10%", "Unlimited", "5 Days", "4%", "7%", "-", "60%"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=569854f4-b8dd-4a8b-bb11-7297c9dc1fc9" 
+                },
+                { 
+                    price: "$25K", 
+                    actualPrice: "$259.00", 
+                    features: ["10%", "Unlimited", "5 Days", "4%", "7%", "-", "60%"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=bccdad21-8585-4fbd-89ef-255e676d3381" 
+                },
+                { 
+                    price: "$50K", 
+                    actualPrice: "$319.00", 
+                    features: ["10%", "Unlimited", "5 Days", "4%", "7%", "-", "60%"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=f50aef31-54fb-41c9-aa13-68339e71a4d1" 
+                },
+                { 
+                    price: "$100K", 
+                    actualPrice: "$529.00", 
+                    features: ["10%", "Unlimited", "5 Days", "4%", "7%", "-", "60%"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=9db23e59-1a5d-4bb3-93de-d4679abd9c65" 
+                },
+                { 
+                    price: "$200K", 
+                    actualPrice: "$989.00", 
+                    features: ["10%", "Unlimited", "5 Days", "4%", "7%", "-", "60%"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=38b403cf-6160-4bef-9904-34cf1ecd4e17" 
+                }
+            ],
+            2: [ // Phase 2 Data
+                { 
+                    price: "$5K", 
+                    actualPrice: "$69.00", 
+                    features: ["8%", "Unlimited", "3 Days", "5%", "10%", "-", "No"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=f8157b9c-2ce2-4696-9799-6793ca79f7ae" 
+                },
+                { 
+                    price: "$10K", 
+                    actualPrice: "$129.00", 
+                    features: ["8%", "Unlimited", "3 Days", "5%", "10%", "-", "No"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=0353ff34-2c0c-4088-b149-b04d5366672f" 
+                },
+                { 
+                    price: "$25K", 
+                    actualPrice: "$259.00", 
+                    features: ["8%", "Unlimited", "3 Days", "5%", "10%", "-", "No"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=4d562b81-e034-4cec-bf42-b070796f42be" 
+                },
+                { 
+                    price: "$50K", 
+                    actualPrice: "$319.00", 
+                    features: ["8%", "Unlimited", "3 Days", "5%", "10%", "-", "No"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=2a13b776-4da8-4577-836f-f11b73b657f8" 
+                },
+                { 
+                    price: "$100K", 
+                    actualPrice: "$529.00", 
+                    features: ["8%", "Unlimited", "3 Days", "5%", "10%", "-", "No"], 
+                    link: "https://prop.fundedx.com/buy-challenge/?id=476b3b1c-ff89-4675-a8d4-89de69f2dc8d" 
+                },
+                { 
+                    price: "$200K", 
+                    actualPrice: "$989.00", 
+                    features: ["8%", "Unlimited", "3 Days", "5%", "10%", "-", "Refundable"], // Refundable feature
+                    link: "https://prop.fundedx.com/buy-challenge/?id=80d6e059-b64c-4bce-90e7-7f9727bc156f" 
+                }
+            ]
+        };
+        
+        function createCards() {
+    const slider = document.getElementById('card-slider');
+    slider.innerHTML = ""; // Clear existing cards
+    cardsData[currentPhase].forEach((card) => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card';
 
-        // Function to create a card
-        function createCard(plan) {
-            const card = document.createElement('div');
-            card.classList.add('card');
-            card.innerHTML = `
-                <h3>${plan.plan}</h3>
-                <p>Profit Target: ${plan.profitTarget}</p>
-                <p>Max Daily Loss: ${plan.maxDailyLoss}</p>
-                <p>Max Overall Loss: ${plan.maxOverallLoss}</p>
-                <p>${plan.profitShare}</p>
-                <p>${plan.drawdown}</p>
-                <p>Fee: ${plan.fee}</p>
-                <p>Billing: ${plan.billing}</p>
-                <button class="plan-button">Get Plan</button>
-            `;
-            return card;
+        // Price Container
+        const priceContainer = document.createElement('div');
+        priceContainer.className = 'price-container';
+
+        // Left side: Price ($5K, $10K, etc.)
+        const priceDiv = document.createElement('div');
+        priceDiv.className = 'price';
+        priceDiv.textContent = card.price;
+
+        // Right side: Logo, PRICE text, and actual price
+        const rightContainer = document.createElement('div');
+        rightContainer.style.display = 'flex';
+        rightContainer.style.flexDirection = 'column';
+        rightContainer.style.alignItems = 'center';
+        rightContainer.style.marginRight = '35px'; 
+
+        // Logo
+        const logoImg = document.createElement('img');
+        logoImg.src = "https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img/https://fundedx.com/wp-content/uploads/2024/03/X-Icon-Black-copy-2.png";
+        logoImg.style.width = '50px'; // Adjust size as needed
+        logoImg.style.height = '50px';
+        rightContainer.appendChild(logoImg);
+
+        // PRICE text
+        const priceText = document.createElement('div');
+        priceText.textContent = 'PRICE';
+        priceText.style.fontWeight = 'bold';
+        rightContainer.appendChild(priceText);
+
+        // Actual price
+        const actualPriceDiv = document.createElement('div');
+        actualPriceDiv.className = 'actual-price';
+        actualPriceDiv.textContent = card.actualPrice;
+        rightContainer.appendChild(actualPriceDiv);
+
+        // Append left and right parts to the price container
+        priceContainer.appendChild(priceDiv);
+        priceContainer.appendChild(rightContainer);
+
+        // Create table and button as before
+        const tableWrapper = document.createElement('div');
+        tableWrapper.className = 'table-wrapper';
+
+        const table = document.createElement('table');
+        const headerRow = document.createElement('tr');
+        ["Features", "Phase 1", "Phase 2", "Funded"].forEach(text => {
+            const th = document.createElement('th');
+            th.textContent = text;
+            headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
+
+        const featureNames = ["Profit Target", "Duration", "Minimum Trading Days", "Max Daily Loss", "Max Loss", "Max Lots", "Consistency Rule"];
+        featureNames.forEach((feature, featureIndex) => {
+            const row = document.createElement('tr');
+            const featureCell = document.createElement('td');
+            featureCell.textContent = feature;
+            row.appendChild(featureCell);
+
+            // Fill in the features for both phases
+            for (let i = 0; i < 2; i++) {
+                const cell = document.createElement('td');
+                cell.textContent = (i === 0) ? card.features[featureIndex] : card.features[featureIndex]; // Same data for both phases
+                row.appendChild(cell);
+            }
+
+            const fundedCell = document.createElement('td');
+            fundedCell.textContent = (currentPhase === 1 && card.price === "$200K") ? "-" : (currentPhase === 2 && card.price === "$200K") ? "Refundable" : "-"; // Conditional for refundable
+            row.appendChild(fundedCell);
+
+            table.appendChild(row);
+        });
+
+        tableWrapper.appendChild(table);
+        const button = document.createElement('button');
+        button.className = 'btn';
+        button.textContent = 'Get Funded';
+        button.onclick = function() {
+            window.open(card.link, '_blank'); // Open link in a new window
+        };
+
+
+        cardDiv.appendChild(priceContainer);
+        cardDiv.appendChild(tableWrapper);
+        cardDiv.appendChild(button);
+        slider.appendChild(cardDiv);
+    });
+    updateSliderWidth();
+}
+
+        function updateSliderWidth() {
+            const slider = document.getElementById('card-slider');
+            const cardCount = cardsData[currentPhase].length;
+            slider.style.width = `${cardCount * (400 + 20)}px`; // 400px for card width + 20px for margin
+            slider.style.transform = `translateX(${-currentIndex * (400 + 20)}px)` // Adjust slider position
         }
-
-        // Function to render cards
-        function renderCards() {
-            cardContainer.innerHTML = '';
-            const card = createCard(plans[currentIndex]);
-            cardContainer.appendChild(card);
+        
+        function selectPhase(phase) {
+            currentPhase = phase;
+            document.getElementById('phase1-btn').classList.toggle('active', phase === 1);
+            document.getElementById('phase2-btn').classList.toggle('active', phase === 2);
+            createCards();
+            currentIndex = 0; // Reset index
         }
-
-        // Event listeners for slider buttons
-        prevBtn.addEventListener('click', () => {
+        
+        function slideLeft() {
             if (currentIndex > 0) {
                 currentIndex--;
-            } else {
-                currentIndex = plans.length - 1;
+                updateSlider();
             }
-            renderCards();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            if (currentIndex < plans.length - 1) {
+        }
+        
+        function slideRight() {
+            const maxIndex = cardsData[currentPhase].length - 1;
+            if (currentIndex < maxIndex) {
                 currentIndex++;
-            } else {
-                currentIndex = 0;
+                updateSlider();
             }
-            renderCards();
-        });
-
-        // Initial render
-        renderCards();
-    </script>
+        }
+        
+        function updateSlider() {
+            const slider = document.getElementById('card-slider');
+            slider.style.transform = `translateX(${-currentIndex * (400 + 20)}px)` // Adjust slider position
+        }
+        
+        // Initialize
+        createCards();
+        
+        </script>
+        
 </body>
 </html>
