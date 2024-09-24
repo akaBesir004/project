@@ -193,18 +193,47 @@ th {
 
 @media (max-width: 768px) {
     .card {
-        scroll-snap-align: center;
+        width: 90%; /* Reduce the width of cards on mobile */
+        margin: 0 auto; /* Center the cards */
+        box-shadow: 0 0 10px 5px #ac8c44; /* Adjust shadow for mobile */
     }
 
-     .phase-buttons button {
+    .phase-buttons button {
         font-size: 18px; /* Reduce font size */
         padding: 5px 15px; /* Adjust padding */
         width: 150px; /* Decrease width */
         height: 40px; /* Decrease height */
     }
 
+    .btn {
+        padding: 10px 20px; /* Adjust padding */
+        font-size: 18px; /* Decrease font size */
+        max-width: 100%; /* Allow button to fill available space */
+    }
+
+    .price {
+        font-size: 36px; /* Reduce price font size */
+        margin-left: 15px; /* Adjust margin for mobile */
+    }
+
+    .actual-price {
+        font-size: 16px; /* Reduce actual price font size */
+    }
+
+    .table-wrapper td {
+        font-size: 12px; /* Adjust table font size */
+    }
+
     .arrow {
-        display: none;
+        display: none; /* Hide arrows on mobile */
+    }
+
+    .phase-buttons button.active {
+        outline: 3px solid #ac8c44; /* Keep outline consistent */
+    }
+
+    .phase-buttons button:hover {
+        outline: 4px solid #AC8C44; /* Increase outline width on hover */
     }
 }
 
