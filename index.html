@@ -449,12 +449,37 @@ th {
                 priceDiv.className = 'price';
                 priceDiv.textContent = card.price;
 
-                const actualPriceDiv = document.createElement('div');
-                actualPriceDiv.className = 'actual-price';
-                actualPriceDiv.textContent = card.actualPrice;
+                
 
-                priceContainer.appendChild(priceDiv);
-                priceContainer.appendChild(actualPriceDiv);
+           // Right side: Logo, PRICE text, and actual price
+        const rightContainer = document.createElement('div');
+        rightContainer.style.display = 'flex';
+        rightContainer.style.flexDirection = 'column';
+        rightContainer.style.alignItems = 'center';
+        rightContainer.style.marginRight = '35px'; 
+
+        // Logo
+        const logoImg = document.createElement('img');
+        logoImg.src = "https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img/https://fundedx.com/wp-content/uploads/2024/03/X-Icon-Black-copy-2.png";
+        logoImg.style.width = '50px'; // Adjust size as needed
+        logoImg.style.height = '50px';
+        rightContainer.appendChild(logoImg);
+
+        // PRICE text
+        const priceText = document.createElement('div');
+        priceText.textContent = 'PRICE';
+        priceText.style.fontWeight = 'bold';
+        rightContainer.appendChild(priceText);
+
+        // Actual price
+        const actualPriceDiv = document.createElement('div');
+        actualPriceDiv.className = 'actual-price';
+        actualPriceDiv.textContent = card.actualPrice;
+        rightContainer.appendChild(actualPriceDiv);
+
+        // Append left and right parts to the price container
+        priceContainer.appendChild(priceDiv);
+        priceContainer.appendChild(rightContainer);
                 cardDiv.appendChild(priceContainer);
 
                 // Create features table
@@ -484,7 +509,7 @@ th {
                 fundedButton.className = 'btn';
                 fundedButton.textContent = 'Get Funded';
                 fundedButton.onclick = () => {
-                    window.location.href = card.link;
+                    window.open(card.link, '_blank');
                 };
                 cardDiv.appendChild(fundedButton);
 
