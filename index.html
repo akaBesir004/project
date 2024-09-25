@@ -5,545 +5,691 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing Cards</title>
     <style>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    position: relative;
-   
-}
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
 
-.phase-buttons {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #627e93;
-    border-radius: 50px;
-   
-}
+        .phase-buttons {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #627e93;
+            border-radius: 50px;
+        }
 
-.phase-buttons button {
-    background-color: black;
-    color: white;
-    border-radius: 25px;
-    padding: 0px 20px;
-    font-size: 20px;
-    cursor: pointer;
-    font-weight: 700;
-    margin: 10px;
-    outline: 3px solid #ac8c44;
-    outline-offset: 2px;
-    transition: outline-width 0.2s ease; /* Transition for outline */
-    z-index: 2;
-    width: fit-content;
-    height: 40px;
-}
+        .phase-buttons button {
+            background-color: black;
+            color: white;
+            border-radius: 25px;
+            padding: 0px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            margin: 10px;
+            outline: 3px solid #ac8c44;
+            outline-offset: 2px;
+            transition: outline-width 0.2s ease;
+            z-index: 2;
+            width: fit-content;
+            height: 40px;
+        }
 
-.phase-buttons button.active {
-    background-color: #AC8C44;
-}
+        .phase-buttons button.active {
+            background-color: #AC8C44;
+        }
 
-.phase-buttons button:hover {
-    outline-width: 4px; /* Increased outline width on hover */
-}
+        .phase-buttons button:hover {
+            outline-width: 4px;
+        }
 
+        .card-container {
+            display: flex;
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 600px;
+            width: 1600px; 
+        }
 
-
-
-.slider {
-    display: flex;
-    max-width: 100%;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.5s ease;
-    flex-wrap: wrap;
-}
-
-.card {
+        .card {
+            position: absolute;
     background-color: #fff;
-    border-radius: 10%; /* Top and bottom border radius */
-    box-shadow: 0 0 15px 10px #ac8c44;/* Strong shadow with #AC8C44 */
+    border-radius: 10%;
+    box-shadow: 0 0 15px 10px #ac8c44;
     width: 500px;
-    margin: 0 10px;
     text-align: center;
     color: #000;
-    transition: transform 0.3s ease-in-out;
-    flex: 0 0 auto;
+    transition: all 0.5s ease;
     padding-bottom: 20px;
-    margin-bottom: 50px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.price-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-.price {
-    font-family: 'Anton', sans-serif;
-    text-transform: uppercase;
-    font-weight:900;
-    color: #ac8c44;
-    font-size: 48px;
-    margin-left: 35px;
-    margin-top: 15px;
-     /* Changed to the gold color */
-}
-
-.actual-price {
-    font-size: 20px; /* Reduced font size for black price */
-    margin-top: 5px;
-    font-weight: bold;
-    color: #000; /* Black price */
-    
-}
-
-.table-wrapper {
-    padding: 10px;
-}
-
-.table-wrapper td:first-child {
-    font-weight: bold;
-    text-align: left;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-table th, table td {
-    border: 1px solid #AC8C44; /* Changed border to the gold color */
-    padding: 8px;
-    font-size: 14px;
-}
-
-th {
-    background-color: transparent;
-}
-
-.btn {
-    background-color: #fff; /* Changed button background to white */
-    color: #AC8C44; /* Text color set to gold */
-    font-family: 'Anton', sans-serif;
-    text-transform: uppercase;
-    border-radius: 50px;
-    padding: 12px 25px;
-    font-size: 20px; /* Increased font size for button */
-    font-weight: 700;
-    margin-top: 10px;
-    cursor: pointer;
-    border: none;
-    outline: 3px solid #ac8c44;
-    outline-offset: 2px;
-    transition: outline .2s ease;
-    z-index: 2;
-    max-height: 50px;
-    max-width: 200px;
-}
-
-.btn:hover{
-
-    outline-width: 4px; 
-}
-
-.funded-info {
-    display: none;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    color: #000;
-    border-radius: 15px;
-}
-
-.arrow {
-    position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    border: none;
-    padding: 15px;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 18px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+        }
+
+ .card:nth-child(1), .card:nth-child(5) {
+    
+    display: none;
 }
 
-.arrow-left {
-    left: 20px;
+
+.card:nth-child(4){
+    
+   
+    margin-left: 40px;
+    
+    scale: 0.9;
+ 
+    box-shadow: 10px 0 50px -5px #ac8c44, inset -10px 0 100px -5px rgba(0, 0, 0, 1) !important;
+}
+.card:nth-child(2) {
+   
+   
+    scale: 0.9;
+   margin-left: -90px;
+   
+   box-shadow: 10px 0 50px -5px #ac8c44, inset -10px 0 100px -5px rgba(0, 0, 0, 1) !important;
 }
 
-.arrow-right {
-    right: 20px;
+.card:nth-child(3) {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    
+    z-index: 2;
 }
 
-@media (max-width: 768px) {
+        .price-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .price {
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+            font-weight: 900;
+            color: #ac8c44;
+            font-size: 48px;
+            margin-left: 35px;
+            margin-top: 15px;
+        }
+
+        .actual-price {
+            font-size: 20px;
+            margin-top: 5px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .table-wrapper {
+            padding: 10px;
+        }
+
+        .table-wrapper td:first-child {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table th, table td {
+            border: 1px solid #AC8C44;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: transparent;
+        }
+
+        .btn {
+            background-color: #fff;
+            color: #AC8C44;
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            outline: 3px solid #ac8c44;
+            outline-offset: 2px;
+            transition: outline .2s ease;
+            z-index: 2;
+            max-height: 50px;
+            max-width: 200px;
+        }
+
+        .btn:hover {
+            outline-width: 4px;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 18px;
+        }
+
+        .arrow-left {
+            left: 20px;
+        }
+
+        .arrow-right {
+            right: 20px;
+        }
+
+        
+
+        @media (max-width: 768px) {
+            .card-container {
+        width: 100%;
+        height: 500px;
+        overflow: visible;
+        position: relative;
+  
+    }
+
     .card {
-        width: 90%; /* Reduce the width of cards on mobile */
-        margin: 0 auto; /* Center the cards */
-        box-shadow: 0 0 10px 5px #ac8c44; 
-        margin-bottom: 20px;/* Adjust shadow for mobile */
+        width: 375px;
+        box-shadow: 0 0 15px 10px #ac8c44;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
-    .phase-buttons button {
-        font-size: 18px; /* Reduce font size */
-        padding: 5px 15px; /* Adjust padding */
-        width: 150px; /* Decrease width */
-        height: 40px; /* Decrease height */
+    .card:nth-child(1), 
+    .card:nth-child(5) {
+        display: none;
     }
 
-    .btn {
-        padding: 10px 20px; /* Adjust padding */
-        font-size: 18px; /* Decrease font size */
-        max-width: 100%; /* Allow button to fill available space */
+    .card:nth-child(2) {
+        display: none;
     }
 
-    .price {
-        font-size: 36px; /* Reduce price font size */
-        margin-left: 15px; /* Adjust margin for mobile */
+    .card:nth-child(4) {
+        display: none;
     }
 
-    .actual-price {
-        font-size: 16px; /* Reduce actual price font size */
+    .card:nth-child(3) {
+        z-index: 2;
+        margin-top: 25px;
     }
 
-    .table-wrapper td {
-        font-size: 12px; /* Adjust table font size */
+    .arrow{
+        display: block;
+    
+        transform: none;
     }
 
-    .arrow {
-        display: none; /* Hide arrows on mobile */
+    
+    .arrow-left {
+        left: -22%;
+        font-size: 32px;
     }
 
-    .phase-buttons button.active {
-        outline: 3px solid #ac8c44; /* Keep outline consistent */
+    .arrow-right {
+        right: -22%;
+        font-size: 32px;
     }
 
-    .phase-buttons button:hover {
-        outline: 4px solid #AC8C44; /* Increase outline width on hover */
+    .card:nth-child(3) {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        z-index: 2;
     }
-}
+            
+          
 
+            .phase-buttons button {
+                font-size: 18px;
+                padding: 5px 15px;
+                width: 150px;
+                height: 40px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 18px;
+                max-width: 100%;
+            }
+
+            .price {
+                font-size: 36px;
+                margin-left: 15px;
+            }
+
+            .actual-price {
+                font-size: 16px;
+            }
+
+            .table-wrapper td {
+                font-size: 12px;
+            }
+
+           
+
+            .phase-buttons button.active {
+                outline: 3px solid #ac8c44;
+            }
+
+            .phase-buttons button:hover {
+                outline: 4px solid #AC8C44;
+            }
+        }
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="phase-buttons">
             <button id="phase1-btn" class="active" onclick="selectPhase(1)">1 PHASE</button>
             <button id="phase2-btn" onclick="selectPhase(2)">2 PHASE</button>
         </div>
 
-        <button class="arrow arrow-left" onclick="slideLeft()">&#10094;</button>
-
-        <div class="slider" id="card-slider"></div>
-
-        <button class="arrow arrow-right" onclick="slideRight()">&#10095;</button>
+        <button class="arrow arrow-left" id="prev">&#10094;</button>
+        <div class="card-container" id="card-container"></div>
+        <button class="arrow arrow-right" id="next">&#10095;</button>
     </div>
 
     <script>
-        let currentIndex = 0;
-        let currentPhase = 1; // Track current phase
+        let currentIndex = 2;
+        let currentPhase = 1;
         const cardsData = {
-            1: [ // Phase 1 Data
-                { 
-                    price: "$5K", 
-                    actualPrice: "$69.00", 
-                    features: {
-                        "Profit Target": { phase1: "10%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "4%", funded: "4%" },
-                        "Max Loss": { phase1: "7%", funded: "7%" },
-                        "Max Lots": { phase1: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "60%", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=fc1dc79c-6341-4823-9352-0cec3dda1db2" 
-                },
-                { 
-                    price: "$10K", 
-                    actualPrice: "$129.00", 
-                    features: {
-                        "Profit Target": { phase1: "10%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "4%", funded: "4%" },
-                        "Max Loss": { phase1: "7%", funded: "7%" },
-                        "Max Lots": { phase1: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "60%", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=569854f4-b8dd-4a8b-bb11-7297c9dc1fc9" 
-                },
-                { 
-                    price: "$25K", 
-                    actualPrice: "$259.00", 
-                    features: {
-                        "Profit Target": { phase1: "10%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "4%", funded: "4%" },
-                        "Max Loss": { phase1: "7%", funded: "7%" },
-                        "Max Lots": { phase1: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "60%", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=bccdad21-8585-4fbd-89ef-255e676d3381" 
-                },
-                { 
-                    price: "$50K", 
-                    actualPrice: "$319.00", 
-                    features: {
-                        "Profit Target": { phase1: "10%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "4%", funded: "4%" },
-                        "Max Loss": { phase1: "7%", funded: "7%" },
-                        "Max Lots": { phase1: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "60%", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=f50aef31-54fb-41c9-aa13-68339e71a4d1" 
-                },
-                { 
-                    price: "$100K", 
-                    actualPrice: "$529.00", 
-                    features: {
-                        "Profit Target": { phase1: "10%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "4%", funded: "4%" },
-                        "Max Loss": { phase1: "7%", funded: "7%" },
-                        "Max Lots": { phase1: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "60%", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=9db23e59-1a5d-4bb3-93de-d4679abd9c65" 
-                },
-                { 
-                    price: "$200K", 
-                    actualPrice: "$989.00", 
-                    features: {
-                        "Profit Target": { phase1: "10%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "4%", funded: "4%" },
-                        "Max Loss": { phase1: "7%", funded: "7%" },
-                        "Max Lots": { phase1: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "60%", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=38b403cf-6160-4bef-9904-34cf1ecd4e17" 
-                }
-            ],
-            2: [ // Phase 2 Data
-                { 
-                    price: "$5K", 
-                    actualPrice: "$69.00", 
-                    features: {
-                        "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
-                        "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
-                        "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=f8157b9c-2ce2-4696-9799-6793ca79f7ae" 
-                },
-                { 
-                    price: "$10K", 
-                    actualPrice: "$129.00", 
-                    features: {
-                        "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
-                        "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
-                        "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=0353ff34-2c0c-4088-b149-b04d5366672f" 
-                },
-                { 
-                    price: "$25K", 
-                    actualPrice: "$259.00", 
-                    features: {
-                        "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
-                        "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
-                        "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=4d562b81-e034-4cec-bf42-b070796f42be" 
-                },
-                { 
-                    price: "$50K", 
-                    actualPrice: "$319.00", 
-                    features: {
-                        "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
-                        "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
-                        "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=3b9a580f-2907-4610-9c25-24cd7b935b91" 
-                },
-                { 
-                    price: "$100K", 
-                    actualPrice: "$529.00", 
-                    features: {
-                        "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
-                        "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
-                        "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=b4e34c5a-2d8c-4580-a7a0-6cb52f24ae4f" 
-                },
-                { 
-                    price: "$200K", 
-                    actualPrice: "$989.00", 
-                    features: {
-                        "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
-                        "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
-                        "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
-                        "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
-                        "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
-                        "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
-                        "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" },
-                        "Refundable": {phase1: "-", phase2: "-", funded: "-"}
-                    },
-                    link: "https://prop.fundedx.com/buy-challenge/?id=ab6a8de2-eaa6-4d40-977c-5072e041db80" 
-                }
-            ]
-        };
+    1: [ // Phase 1 Data
+        { 
+            price: "$5K", 
+            actualPrice: "$69.00", 
+            features: {
+                "Profit Target": { phase1: "10%", funded: "-" },
+                "Duration": { phase1: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "4%", funded: "4%" },
+                "Max Loss": { phase1: "7%", funded: "7%" },
+                "Max Lots": { phase1: "-", funded: "-" },
+                "Consistency Rule": { phase1: "60%", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=fc1dc79c-6341-4823-9352-0cec3dda1db2" 
+        },
+        { 
+            price: "$10K", 
+            actualPrice: "$129.00", 
+            features: {
+                "Profit Target": { phase1: "10%", funded: "-" },
+                "Duration": { phase1: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "4%", funded: "4%" },
+                "Max Loss": { phase1: "7%", funded: "7%" },
+                "Max Lots": { phase1: "-", funded: "-" },
+                "Consistency Rule": { phase1: "60%", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=569854f4-b8dd-4a8b-bb11-7297c9dc1fc9" 
+        },
+        { 
+            price: "$25K", 
+            actualPrice: "$259.00", 
+            features: {
+                "Profit Target": { phase1: "10%", funded: "-" },
+                "Duration": { phase1: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "4%", funded: "4%" },
+                "Max Loss": { phase1: "7%", funded: "7%" },
+                "Max Lots": { phase1: "-", funded: "-" },
+                "Consistency Rule": { phase1: "60%", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=bccdad21-8585-4fbd-89ef-255e676d3381" 
+        },
+        { 
+            price: "$50K", 
+            actualPrice: "$319.00", 
+            features: {
+                "Profit Target": { phase1: "10%", funded: "-" },
+                "Duration": { phase1: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "4%", funded: "4%" },
+                "Max Loss": { phase1: "7%", funded: "7%" },
+                "Max Lots": { phase1: "-", funded: "-" },
+                "Consistency Rule": { phase1: "60%", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=f50aef31-54fb-41c9-aa13-68339e71a4d1" 
+        },
+        { 
+            price: "$100K", 
+            actualPrice: "$529.00", 
+            features: {
+                "Profit Target": { phase1: "10%", funded: "-" },
+                "Duration": { phase1: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "4%", funded: "4%" },
+                "Max Loss": { phase1: "7%", funded: "7%" },
+                "Max Lots": { phase1: "-", funded: "-" },
+                "Consistency Rule": { phase1: "60%", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=9db23e59-1a5d-4bb3-93de-d4679abd9c65" 
+        },
+        { 
+            price: "$200K", 
+            actualPrice: "$989.00", 
+            features: {
+                "Profit Target": { phase1: "10%", funded: "-" },
+                "Duration": { phase1: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "5 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "4%", funded: "4%" },
+                "Max Loss": { phase1: "7%", funded: "7%" },
+                "Max Lots": { phase1: "-", funded: "-" },
+                "Consistency Rule": { phase1: "60%", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=38b403cf-6160-4bef-9904-34cf1ecd4e17" 
+        }
+    ],
+    2: [ // Phase 2 Data
+        { 
+            price: "$5K", 
+            actualPrice: "$69.00", 
+            features: {
+                "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
+                "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
+                "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
+                "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
+                "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=f8157b9c-2ce2-4696-9799-6793ca79f7ae" 
+        },
+        { 
+            price: "$10K", 
+            actualPrice: "$129.00", 
+            features: {
+                "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
+                "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
+                "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
+                "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
+                "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=0353ff34-2c0c-4088-b149-b04d5366672f" 
+        },
+        { 
+            price: "$25K", 
+            actualPrice: "$259.00", 
+            features: {
+                "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
+                "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
+                "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
+                "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
+                "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=4d562b81-e034-4cec-bf42-b070796f42be" 
+        },
+        { 
+            price: "$50K", 
+            actualPrice: "$319.00", 
+            features: {
+                "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
+                "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
+                "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
+                "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
+                "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=813f9c0e-1c05-4960-b750-0cb68c653ba2" 
+        },
+        { 
+            price: "$100K", 
+            actualPrice: "$529.00", 
+            features: {
+                "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
+                "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
+                "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
+                "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
+                "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=02aee2af-0be9-48c0-9ff9-cbe5c42cc20a" 
+        },
+        { 
+            price: "$200K", 
+            actualPrice: "$989.00", 
+            features: {
+                "Profit Target": { phase1: "8%", phase2: "5%", funded: "-" },
+                "Duration": { phase1: "Unlimited", phase2: "Unlimited", funded: "Unlimited" },
+                "Minimum Trading Days": { phase1: "3 Days", phase2: "3 Days", funded: "-" },
+                "Max Daily Loss": { phase1: "5%", phase2: "5%", funded: "5%" },
+                "Max Loss": { phase1: "10%", phase2: "10%", funded: "10%" },
+                "Max Lots": { phase1: "-", phase2: "-", funded: "-" },
+                "Consistency Rule": { phase1: "No", phase2: "No", funded: "No" }
+            },
+            link: "https://prop.fundedx.com/buy-challenge/?id=746c6489-f8c8-4484-9793-05e21c6de92f" 
+        }
+    ]
+};
 
-        function createCards() {
-            const slider = document.getElementById('card-slider');
-            slider.innerHTML = ''; // Clear previous cards
+function createCards() {
+    const cardContainer = document.getElementById('card-container');
 
-            cardsData[currentPhase].forEach(card => {
-                const cardDiv = document.createElement('div');
-                cardDiv.className = 'card';
 
-                // Create price section
-                const priceContainer = document.createElement('div');
-                priceContainer.className = 'price-container';
+    if (!cardContainer) {
+        console.error("Card container not found!");
+        return;
+    }
+    cardContainer.innerHTML = '';
 
-                const priceDiv = document.createElement('div');
-                priceDiv.className = 'price';
-                priceDiv.textContent = card.price;
+    const totalCards = cardsData[currentPhase].length;
 
-                
+    for (let i = -2; i <= 2; i++) {
+        const index = (currentIndex + i + totalCards) % totalCards;
+        const card = cardsData[currentPhase][index];
+        
 
-           // Right side: Logo, PRICE text, and actual price
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card';
+        cardDiv.style.transform = `translate(-50%, -50%) translateX(${i * 100}%)`;
+        cardDiv.style.transition = 'transform 0.5s ease, filter 0.5s ease';
+        
+        if (i === 0) {
+            cardDiv.style.filter = 'blur(0)';
+            cardDiv.style.zIndex = '2';
+        } else {
+            cardDiv.style.filter = 'blur(5px)';
+            cardDiv.style.zIndex = '1';
+        }
+
+        
+
+        // Create price section
+        const priceContainer = document.createElement('div');
+        priceContainer.className = 'price-container';
+
+        const priceDiv = document.createElement('div');
+        priceDiv.className = 'price';
+        priceDiv.textContent = card.price;
+
         const rightContainer = document.createElement('div');
         rightContainer.style.display = 'flex';
         rightContainer.style.flexDirection = 'column';
         rightContainer.style.alignItems = 'center';
-        rightContainer.style.marginRight = '35px'; 
+        rightContainer.style.marginRight = '35px';
 
-        // Logo
         const logoImg = document.createElement('img');
         logoImg.src = "https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img/https://fundedx.com/wp-content/uploads/2024/03/X-Icon-Black-copy-2.png";
-        logoImg.style.width = '50px'; // Adjust size as needed
+        logoImg.style.width = '50px';
         logoImg.style.height = '50px';
         rightContainer.appendChild(logoImg);
 
-        // PRICE text
         const priceText = document.createElement('div');
         priceText.textContent = 'PRICE';
         priceText.style.fontWeight = 'bold';
         rightContainer.appendChild(priceText);
 
-        // Actual price
         const actualPriceDiv = document.createElement('div');
         actualPriceDiv.className = 'actual-price';
         actualPriceDiv.textContent = card.actualPrice;
         rightContainer.appendChild(actualPriceDiv);
 
-        // Append left and right parts to the price container
         priceContainer.appendChild(priceDiv);
         priceContainer.appendChild(rightContainer);
-                cardDiv.appendChild(priceContainer);
+        cardDiv.appendChild(priceContainer);
 
-                // Create features table
-                const tableWrapper = document.createElement('div');
-                tableWrapper.className = 'table-wrapper';
-                const table = document.createElement('table');
+        // Create features table
+        const tableWrapper = document.createElement('div');
+        tableWrapper.className = 'table-wrapper';
+        const table = document.createElement('table');
 
-                const headerRow = document.createElement('tr');
-                headerRow.innerHTML = '<th>Feature</th><th>Phase 1</th><th>Phase 2</th><th>Funded</th>';
-                table.appendChild(headerRow);
+        const headerRow = document.createElement('tr');
+        headerRow.innerHTML = '<th>Feature</th><th>Phase 1</th><th>Phase 2</th><th>Funded</th>';
+        table.appendChild(headerRow);
 
-                for (const [feature, values] of Object.entries(card.features)) {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${feature}</td>
-                        <td>${values.phase1 || '-'}</td>
-                        <td>${values.phase2 || '-'}</td>
-                        <td>${values.funded || '-'}</td>
-                    `;
-                    table.appendChild(row);
-                }
-
-                tableWrapper.appendChild(table);
-                cardDiv.appendChild(tableWrapper);
-
-                const fundedButton = document.createElement('button');
-                fundedButton.className = 'btn';
-                fundedButton.textContent = 'Get Funded';
-                fundedButton.onclick = () => {
-                    window.open(card.link, '_blank');
-                };
-                cardDiv.appendChild(fundedButton);
-
-                slider.appendChild(cardDiv);
-            });
+        for (const [feature, values] of Object.entries(card.features)) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${feature}</td>
+                <td>${values.phase1 || '-'}</td>
+                <td>${values.phase2 || '-'}</td>
+                <td>${values.funded || '-'}</td>
+            `;
+            table.appendChild(row);
         }
 
-        function selectPhase(phase) {
-            currentPhase = phase;
-            document.querySelectorAll('.phase-buttons button').forEach((btn) => {
-                btn.classList.remove('active');
-            });
-            document.getElementById(`phase${phase}-btn`).classList.add('active');
-            createCards();
-        }
+        tableWrapper.appendChild(table);
+        cardDiv.appendChild(tableWrapper);
 
-        function slideLeft() {
-            const slider = document.getElementById('card-slider');
-            if (currentIndex > 0) {
-                currentIndex--;
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-        }
+        const fundedButton = document.createElement('button');
+        fundedButton.className = 'btn';
+        fundedButton.textContent = 'Get Funded';
+        fundedButton.onclick = () => {
+            window.open(card.link, '_blank');
+        };
+        cardDiv.appendChild(fundedButton);
 
-        function slideRight() {
-            const slider = document.getElementById('card-slider');
-            if (currentIndex < cardsData[currentPhase].length - 1) {
-                currentIndex++;
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-        }
+      
+        cardContainer.appendChild(cardDiv);
+       
+    }
+    
+ 
+}
+
+function slideToNextCard() {
+    const cards = document.querySelectorAll('.card');
+    const animationDuration = 500; // 500ms for the animation
+
+    cards.forEach((card, index) => {
+        const startPosition = (index - 2) * 100;
+        const endPosition = (index - 3) * 100;
+
+        card.animate([
+            { transform: `translate(-50%, -50%) translateX(${startPosition}%)` },
+            { transform: `translate(-50%, -50%) translateX(${endPosition}%)` }
+        ], {
+            duration: animationDuration,
+            easing: 'ease'
+        });
+    });
+
+    currentIndex++;
+    if (currentIndex >= cardsData[currentPhase].length) {
+        currentPhase = currentPhase === 1 ? 2 : 1;
+        currentIndex = 0;
+        document.querySelectorAll('.phase-buttons button').forEach((btn) => {
+            btn.classList.toggle('active');
+        });
+    }
+    
+    // Immediately create new cards, but with delayed visibility
+    createCards();
+}
+
+function slideToPreviousCard() {
+    const cards = document.querySelectorAll('.card');
+    const animationDuration = 500; // 500ms for the animation
+
+    cards.forEach((card, index) => {
+        const startPosition = (index - 2) * 100;
+        const endPosition = (index - 1) * 100;
+
+        card.animate([
+            { transform: `translate(-50%, -50%) translateX(${startPosition}%)` },
+            { transform: `translate(-50%, -50%) translateX(${endPosition}%)` }
+        ], {
+            duration: animationDuration,
+            easing: 'ease'
+        });
+    });
+
+    currentIndex--;
+    if (currentIndex < 0) {
+        currentPhase = currentPhase === 1 ? 2 : 1;
+        currentIndex = cardsData[currentPhase].length - 1;
+        document.querySelectorAll('.phase-buttons button').forEach((btn) => {
+            btn.classList.toggle('active');
+        });
+    }
+    
+   
+    createCards();
+}
+
+function selectPhase(phase) {
+    if (phase === currentPhase) return; // Ako je ista faza, ne radimo ništa
+
+    const currentPrice = cardsData[currentPhase][currentIndex].price;
+    currentPhase = phase;
+    currentIndex = cardsData[phase].findIndex(card => card.price === currentPrice);
+    if (currentIndex === -1) currentIndex = 0;
+    
+    document.querySelectorAll('.phase-buttons button').forEach((btn) => {
+        btn.classList.remove('active');
+    });
+    document.getElementById(`phase${phase}-btn`).classList.add('active');
+    
+    createCards();
+}
+
+
+        let next = document.getElementById('next');
+        let prev = document.getElementById('prev');
+
+        if (next && prev) {
+        next.addEventListener('click', slideToNextCard);
+        prev.addEventListener('click', slideToPreviousCard);
+    } else {
+        console.error("Next or Prev button not found!");
+    }
 
         createCards(); // Initial call to create cards
     </script>
 </body>
-
 </html>
