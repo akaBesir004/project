@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing Cards</title>
     <style>
-        body {
+        .card-body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
@@ -16,13 +16,14 @@
             align-items: center;
         }
 
-        .container {
+        .main-card-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             position: relative;
+            background-color: #000;
         }
 
         .phase-buttons {
@@ -309,8 +310,8 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
+<body class="card-body">
+    <div class="main-card-container">
         <div class="phase-buttons">
             <button id="phase1-btn" class="active" onclick="selectPhase(1)">1 PHASE</button>
             <button id="phase2-btn" onclick="selectPhase(2)">2 PHASE</button>
