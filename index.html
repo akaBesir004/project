@@ -31,7 +31,6 @@
 
         .phase-buttons {
         
-            margin-bottom: 20px;
             border: 1px solid #627e93;
             border-radius: 50px;
          
@@ -192,27 +191,48 @@
             outline-width: 4px;
         }
 
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 18px;
-        }
+        .dots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-        .arrow-left {
-            left: 20px;
-        }
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 0;
+}
 
-        .arrow-right {
-            right: 20px;
-        }
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
 
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #ac8c44;
+  margin: 0 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.dot.active {
+  background-color: #ac8c44;
+}
+
+.arrow-left, .arrow-right {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #ac8c44;
+  cursor: pointer;
+  padding: 0 5px;
+  flex-shrink: 0;
+}
         
 
         @media (max-width: 768px) {
@@ -245,42 +265,39 @@
     .card:nth-child(4) {
         display: none;
     }
-
     .card:nth-child(3) {
-        z-index: 2;
-        margin-top: 25px;
-    }
-
-    .arrow{
         display: block;
-    
-        transform: none;
+        z-index: 2;
+        margin-top: 0;
     }
+    .dots-container {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
 
-    
-    .arrow-left {
-        
-        font-size: 24px;
-        margin-top: 72%;
-    }
+  .dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 2px;
+  }
 
-    .arrow-right {
-       
-        margin-top: 72%;
-        font-size: 24px;
-    }
+  .arrow-left, .arrow-right {
+    font-size: 18px;
+    padding: 0 3px;
+  }
+
 
     .card:nth-child(3) {
         transform: translate(-50%, -50%) scale(1);
         opacity: 1;
         z-index: 2;
+       
     }
             
     .phase-buttons {
-        margin-top: -150px;
-        
+        margin-top: 20px;
+        margin-bottom: 60px;
     }
-
             .phase-buttons button {
                 font-size: 18px;
                 padding: 5px 15px;
@@ -313,6 +330,8 @@
             .phase-buttons button:hover {
                 outline: 4px solid #AC8C44;
             }
+
+            
         }
     </style>
 </head>
@@ -323,9 +342,13 @@
             <button id="phase2-btn" onclick="selectPhase(2)">2 PHASE</button>
         </div>
 
-        <button class="arrow arrow-left" id="prev">&#10094;</button>
+        
         <div class="card-container" id="card-container"></div>
-        <button class="arrow arrow-right" id="next">&#10095;</button>
+        <div class="dots-container">
+            <button class="arrow arrow-left" id="prev-dot">&#10094;</button>
+            <div class="dots"></div>
+            <button class="arrow arrow-right" id="next-dot">&#10095;</button>
+        </div>
     </div>
 
     <script>
@@ -623,6 +646,43 @@ function createCards() {
  
 }
 
+function createDots() {
+  const dotsContainer = document.querySelector('.dots');
+  dotsContainer.innerHTML = '';
+  
+  for (let i = 0; i < cardsData[1].length + cardsData[2].length; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    dot.addEventListener('click', () => goToCard(i));
+    dotsContainer.appendChild(dot);
+  }
+  
+  updateActiveDot();
+}
+
+function updateActiveDot() {
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((dot, index) => {
+    if (index === currentIndex + (currentPhase === 2 ? cardsData[1].length : 0)) {
+      dot.classList.add('active');
+    } else {
+      dot.classList.remove('active');
+    }
+  });
+}
+
+function goToCard(index) {
+  if (index < cardsData[1].length) {
+    currentPhase = 1;
+    currentIndex = index;
+  } else {
+    currentPhase = 2;
+    currentIndex = index - cardsData[1].length;
+  }
+  createCards();
+  updateActiveDot();
+}
+
 function slideToNextCard() {
     const cards = document.querySelectorAll('.card');
     const animationDuration = 500; // 500ms for the animation
@@ -651,6 +711,7 @@ function slideToNextCard() {
     
     // Immediately create new cards, but with delayed visibility
     createCards();
+    updateActiveDot();
 }
 
 function slideToPreviousCard() {
@@ -681,6 +742,7 @@ function slideToPreviousCard() {
     
    
     createCards();
+    updateActiveDot();
 }
 
 function selectPhase(phase) {
@@ -697,11 +759,12 @@ function selectPhase(phase) {
     document.getElementById(`phase${phase}-btn`).classList.add('active');
     
     createCards();
+    updateActiveDot();
 }
+createDots();
 
-
-        let next = document.getElementById('next');
-        let prev = document.getElementById('prev');
+        let next = document.getElementById('next-dot');
+        let prev = document.getElementById('prev-dot');
 
         if (next && prev) {
         next.addEventListener('click', slideToNextCard);
@@ -710,6 +773,7 @@ function selectPhase(phase) {
         console.error("Next or Prev button not found!");
     }
 
+        
         createCards(); // Initial call to create cards
     </script>
 </body>
