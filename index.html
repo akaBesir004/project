@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing Cards</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
         .card-body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Work Sans',sans-serif;
             background-color: #000;
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
+           
         }
 
         .main-card-container {
@@ -31,6 +34,7 @@
             margin-bottom: 20px;
             border: 1px solid #627e93;
             border-radius: 50px;
+         
         }
 
         .phase-buttons button {
@@ -48,6 +52,7 @@
             z-index: 2;
             width: fit-content;
             height: 40px;
+            font-family: 'Anton', sans-serif;
         }
 
         .phase-buttons button.active {
@@ -150,6 +155,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
+           
         }
 
         table th, table td {
@@ -168,8 +174,8 @@
             font-family: 'Anton', sans-serif;
             text-transform: uppercase;
             border-radius: 50px;
-            padding: 12px 25px;
-            font-size: 20px;
+            padding: 0px 25px;
+            font-size: 25px;
             font-weight: 700;
             margin-top: 10px;
             cursor: pointer;
@@ -179,7 +185,7 @@
             transition: outline .2s ease;
             z-index: 2;
             max-height: 50px;
-            max-width: 200px;
+            max-width: 250px;
         }
 
         .btn:hover {
@@ -279,11 +285,7 @@
                 height: 40px;
             }
 
-            .btn {
-                padding: 10px 20px;
-                font-size: 18px;
-                max-width: 100%;
-            }
+     
 
             .price {
                 font-size: 36px;
