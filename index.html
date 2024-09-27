@@ -36,7 +36,7 @@
          
         }
 
-        .phase-buttons button {
+        .phase-buttons #phase1-btn, #phase2-btn{
             background-color: black;
             color: white;
             border-radius: 25px;
@@ -54,7 +54,11 @@
             font-family: 'Anton', sans-serif;
         }
 
-        .phase-buttons button.active {
+        #phase1-btn.active {
+            background-color: #AC8C44;
+        }
+
+        #phase2-btn.active {
             background-color: #AC8C44;
         }
 
@@ -84,6 +88,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
         }
 
  .card:nth-child(1), .card:nth-child(5) {
@@ -160,7 +165,7 @@
         table th, table td {
             border: 1px solid #AC8C44;
             padding: 8px;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         th {
@@ -191,14 +196,40 @@
             outline-width: 4px;
         }
 
-        .dots-container {
+        .arrow-left, .arrow-right {
+  background: #ac8c44;
+  border: 2px solid #ac8c44;
+  font-size: 18px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-  width: 100%;
-  overflow-x: auto;
-  padding: 10px 0;
+.arrow-left:hover, .arrow-right:hover {
+  background: white;
+  color: #ac8c44;
+  box-shadow: 0 4px 8px rgba(172, 140, 68, 0.3);
+}
+
+.arrow-left:active, .arrow-right:active {
+  transform: scale(0.95);
+}
+
+
+
+/* Osigurajmo da su strelice dobro poravnate s točkama */
+.dots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Razmak između strelica i točaka */
 }
 
 .dots {
@@ -209,8 +240,8 @@
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background-color: #fff;
   border: 2px solid #ac8c44;
@@ -224,15 +255,7 @@
   background-color: #ac8c44;
 }
 
-.arrow-left, .arrow-right {
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #ac8c44;
-  cursor: pointer;
-  padding: 0 5px;
-  flex-shrink: 0;
-}
+
         
 
         @media (max-width: 768px) {
@@ -245,12 +268,13 @@
     }
 
     .card {
-        width: 350px;
+        width: 400px;
         box-shadow: 0 0 15px 10px #ac8c44;
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        border-radius: 12.5%;
     }
 
     .card:nth-child(1), 
@@ -300,8 +324,8 @@
     }
             .phase-buttons button {
                 font-size: 18px;
-                padding: 5px 15px;
-                width: 150px;
+                padding: 5px 5px;
+                width: 120px;
                 height: 40px;
                
             }
@@ -318,10 +342,12 @@
             }
 
             .table-wrapper td {
-                font-size: 12px;
+                font-size: 10px;
             }
 
-           
+           .btn{
+            font-size: 20px;
+           }
 
             .phase-buttons button.active {
                 outline: 3px solid #ac8c44;
