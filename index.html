@@ -258,108 +258,127 @@
 
         
 
-        @media (max-width: 768px) {
-            .card-container {
+@media (max-width: 768px) {
+    .card-container {
         width: 100%;
-        height: 500px;
+        height: 520px;
         overflow: visible;
         position: relative;
-     
     }
 
     .card {
-        width: 400px;
+        width: 100%;
+        max-width: 400px;
         box-shadow: 0 0 15px 10px #ac8c44;
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        border-radius: 12.5%;
-      
+        border-radius: 15%;
+        padding: 15px;
     }
 
     .card:nth-child(1), 
+    .card:nth-child(2),
+    .card:nth-child(4),
     .card:nth-child(5) {
         display: none;
     }
 
-    .card:nth-child(2) {
-        display: none;
-    }
-
-    .card:nth-child(4) {
-        display: none;
-    }
     .card:nth-child(3) {
         display: block;
         z-index: 2;
         margin-top: 0;
-    }
-    .dots-container {
-    margin-top: 40px;
-    margin-bottom: 20px;
-  }
-
-  .dot {
-    width: 15px;
-    height: 15px;
-    margin: 0 2px;
-  }
-
-  .arrow-left, .arrow-right {
-    font-size: 24px;
-    padding: 0 3px;
-  }
-
-
-    .card:nth-child(3) {
         transform: translate(-50%, -50%) scale(1);
         opacity: 1;
-        z-index: 2;
-       
     }
-            
+
+    .dots-container {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        margin: 0 3px;
+    }
+
+    .arrow-left, .arrow-right {
+        font-size: 20px;
+        padding: 8px;
+        width: 35px;
+        height: 35px;
+    }
+
     .phase-buttons {
-       
-        margin-bottom: 40px;
+        margin-bottom: 30px;
     }
-            .phase-buttons button {
-                font-size: 18px;
-                padding: 5px 5px;
-                width: 120px;
-                height: 40px;
-               
-            }
 
-     
+    .phase-buttons button {
+        font-size: 16px;
+        padding: 5px 5px;
+        width: 110px;
+        height: 35px;
+    }
 
-            .price {
-                font-size: 36px;
-                margin-left: 15px;
-            }
+    .price {
+        font-size: 32px;
+        margin-left: 10px;
+    }
 
-            .actual-price {
-                font-size: 16px;
-            }
+    .actual-price {
+        font-size: 14px;
+    }
 
-            .table-wrapper td {
-                font-size: 10px;
-            }
+    .table-wrapper {
+        margin: 10px 0;
+    }
 
-           .btn{
-            font-size: 20px;
-           }
+    .table-wrapper td, .table-wrapper th {
+        font-size: 10px;
+        padding: 6px 4px;
+    }
 
-            .phase-buttons button.active {
-                outline: 3px solid #ac8c44;
-            }
+    .btn {
+        font-size: 18px;
+        padding: 8px 15px;
+        margin-top: 10px;
+    }
 
-            .phase-buttons button:hover {
-                outline: 4px solid #AC8C44;
-            }
+    .phase-buttons button.active {
+        outline: 2px solid #ac8c44;
+    }
 
-            
+    .phase-buttons button:hover {
+        outline: 3px solid #AC8C44;
+    }
+
+    /* Dodatna optimizacija za vrlo male ekrane */
+    @media (max-width: 360px) {
+        .card {
+            padding: 10px;
         }
+
+        .price {
+            font-size: 28px;
+        }
+
+        .actual-price {
+            font-size: 12px;
+        }
+
+        .table-wrapper td, .table-wrapper th {
+            font-size: 10px;
+            padding: 4px 2px;
+        }
+
+        .btn {
+            font-size: 16px;
+            padding: 6px 12px;
+        }
+    }
+}
     </style>
 </head>
 <body class="card-body">
