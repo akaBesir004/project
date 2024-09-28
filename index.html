@@ -378,6 +378,31 @@
         outline: 3px solid #AC8C44;
     }
 
+    @media (max-width: 768px) {
+
+        .card {
+        width: 100%;
+        max-width: 300px;
+        box-shadow: 0 0 15px 10px #ac8c44;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 15%;
+        padding: 15px;
+       
+    }
+
+
+        .arrow-left {
+        left: 5px;
+    }
+
+    .arrow-right {
+        right: 5px;
+    }
+    }
+
     /* Dodatna optimizacija za vrlo male ekrane */
     @media (max-width: 360px) {
         .card {
