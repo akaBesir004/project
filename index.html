@@ -27,6 +27,7 @@
             min-height: 100vh;
             position: relative;
             background-color: #000;
+            
         }
 
         .phase-buttons {
@@ -189,7 +190,7 @@
             transition: outline .2s ease;
             z-index: 2;
             max-height: 50px;
-            max-width: 250px;
+            width: 70%;
         }
 
         .btn:hover {
@@ -197,31 +198,42 @@
         }
 
         .arrow-left, .arrow-right {
-  background: #ac8c44;
-  border: 2px solid #ac8c44;
-  font-size: 18px;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background: #ac8c44;
+    border: 2px solid #ac8c44;
+    font-size: 18px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.arrow-left {
+    left: calc(50% - 300px); /* Adjust this value based on half the width of your central card */
+}
+
+.arrow-right {
+    right: calc(50% - 300px); /* Adjust this value based on half the width of your central card */
 }
 
 .arrow-left:hover, .arrow-right:hover {
-  background: white;
-  color: #ac8c44;
-  box-shadow: 0 4px 8px rgba(172, 140, 68, 0.3);
+    background: white;
+    color: #ac8c44;
+    box-shadow: 0 4px 8px rgba(172, 140, 68, 0.3);
 }
 
 .arrow-left:active, .arrow-right:active {
-  transform: scale(0.95);
+    transform: translateY(-50%) scale(0.95);
 }
-
 
 
 /* Osigurajmo da su strelice dobro poravnate s točkama */
@@ -240,8 +252,8 @@
 }
 
 .dot {
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
 
   border: 2px solid #ac8c44;
@@ -300,8 +312,8 @@
     }
 
     .dot {
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         margin: 0 3px;
     }
 
@@ -310,10 +322,16 @@
         padding: 8px;
         width: 35px;
         height: 35px;
+       
     }
 
+    .arrow-left {
+        left: 5px;
+    }
 
-
+    .arrow-right {
+        right: 5px;
+    }
     .phase-buttons {
         margin-bottom: 30px;
     }
@@ -389,8 +407,8 @@
 <body class="card-body">
 
     <div class="main-card-container">
-        <h2>CHOSE YOUR <span>BEST PLAN</span></h2>
-        <p style="text-align: center; white-space: pre-wrap; transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1); transition-duration: 0.65s;" class="cardPar">Select your challenge, demonstrate that you have successful trading techniques, and generate substantial virtual profits to build your future.</p>
+        <h2>CHOOSE YOUR <span style="color: #ac8c44">BEST PLAN</span></h2>
+        <p style="text-align: center; white-space: pre-wrap; transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1); transition-duration: 0.65s;">Select your challenge, demonstrate that you have successful trading techniques, and generate substantial virtual profits to build your future.</p>
         <div class="phase-buttons">
             <button id="phase1-btn" class="active" onclick="selectPhase(1)">1 PHASE</button>
             <button id="phase2-btn" onclick="selectPhase(2)">2 PHASE</button>
