@@ -276,6 +276,7 @@
         transform: translate(-50%, -50%);
         border-radius: 15%;
         padding: 15px;
+       
     }
 
     .card:nth-child(1), 
@@ -331,8 +332,11 @@
         font-size: 14px;
     }
 
+ 
+
     .table-wrapper {
         margin: 10px 0;
+        
     }
 
     .table-wrapper td, .table-wrapper th {
@@ -632,12 +636,6 @@ function createCards() {
         rightContainer.style.flexDirection = 'column';
         rightContainer.style.alignItems = 'center';
         rightContainer.style.marginRight = '35px';
-
-        const logoImg = document.createElement('img');
-        logoImg.src = "https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img/https://fundedx.com/wp-content/uploads/2024/03/X-Icon-Black-copy-2.png";
-        logoImg.style.width = '50px';
-        logoImg.style.height = '50px';
-        rightContainer.appendChild(logoImg);
 
         const priceText = document.createElement('div');
         priceText.textContent = 'PRICE';
