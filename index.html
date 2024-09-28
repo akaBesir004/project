@@ -172,7 +172,7 @@
             background-color: transparent;
         }
 
-        .btn {
+        .btnInsideCard {
             background-color: #fff;
             color: #AC8C44;
             font-family: 'Anton', sans-serif;
@@ -344,7 +344,7 @@
         padding: 6px 4px;
     }
 
-    .btn {
+    .btnInsideCard {
         font-size: 18px;
         padding: 8px 15px;
         margin-top: 10px;
@@ -675,7 +675,7 @@ function createCards() {
         cardDiv.appendChild(tableWrapper);
 
         const fundedButton = document.createElement('button');
-        fundedButton.className = 'btn';
+        fundedButton.className = 'btnInsideCard';
         fundedButton.textContent = 'Get Funded';
         fundedButton.onclick = () => {
             window.open(card.link, '_blank');
