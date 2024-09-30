@@ -159,7 +159,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+         
            
         }
 
@@ -199,7 +199,7 @@
 
         .arrow-left, .arrow-right {
     background: #ac8c44;
-    border: 2px solid black;
+    border: 2px solid #ac8c44;;
     font-size: 18px;
     border-radius: 50%;
     color: white;
@@ -253,8 +253,8 @@
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
 
   border: 2px solid #ac8c44;
@@ -281,7 +281,7 @@
 
     .card {
         width: 100%;
-        max-width: 325px;
+        max-width: 350px;
         box-shadow: 0 0 15px 10px #ac8c44;
         position: absolute;
         left: 50%;
@@ -313,8 +313,8 @@
     }
 
     .dot {
-        width: 10px;
-        height: 10px;
+        width: 6px;
+        height: 6px;
         margin: 0 3px;
     }
 
@@ -327,11 +327,11 @@
     }
 
     .arrow-left {
-        left: 5px;
+        left:   10px;
     }
 
     .arrow-right {
-        right: 5px;
+        right: 10px;
     }
     .phase-buttons {
         margin-bottom: 30px;
@@ -355,10 +355,7 @@
 
  
 
-    .table-wrapper {
-        margin: 10px 0;
-        
-    }
+  
 
     .table-wrapper td, .table-wrapper th {
         font-size: 10px;
@@ -382,7 +379,7 @@
 
         .card {
         width: 100%;
-        max-width: 300px;
+        max-width: 350px;
         box-shadow: 0 0 15px 10px #ac8c44;
         position: absolute;
         left: 50%;
@@ -439,13 +436,14 @@
             <button id="phase1-btn" class="active" onclick="selectPhase(1)">1 PHASE</button>
             <button id="phase2-btn" onclick="selectPhase(2)">2 PHASE</button>
         </div>
-
+        <button class="arrow arrow-left" id="prev-dot">&#10094;</button>
+        <button class="arrow arrow-right" id="next-dot">&#10095;</button>
         
         <div class="card-container" id="card-container"></div>
         <div class="dots-container">
-            <button class="arrow arrow-left" id="prev-dot">&#10094;</button>
+
             <div class="dots"></div>
-            <button class="arrow arrow-right" id="next-dot">&#10095;</button>
+           
         </div>
     </div>
 
