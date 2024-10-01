@@ -198,33 +198,22 @@
         }
 
         .arrow-left, .arrow-right {
-    background: #ac8c44;
-    border: 2px solid #ac8c44;;
-    font-size: 18px;
-    border-radius: 50%;
-    color: white;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    top: 60%;
-    transform: translateY(-50%);
-    z-index: 10;
+            background: #ac8c44;
+            border: 2px solid #ac8c44;
+            font-size: 18px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        
+        }
 
-}
 
-.arrow-left {
-    left: calc(50% - 300px); /* Adjust this value based on half the width of your central card */
-}
-
-.arrow-right {
-    right: calc(50% - 300px); /* Adjust this value based on half the width of your central card */
-}
 
 .arrow-left:hover, .arrow-right:hover {
     background: #1D1D1D;
@@ -436,14 +425,15 @@
             <button id="phase1-btn" class="active" onclick="selectPhase(1)">1 PHASE</button>
             <button id="phase2-btn" onclick="selectPhase(2)">2 PHASE</button>
         </div>
-        <button class="arrow arrow-left" id="prev-dot">&#10094;</button>
-        <button class="arrow arrow-right" id="next-dot">&#10095;</button>
+       
         
         <div class="card-container" id="card-container"></div>
         <div class="dots-container">
 
-            <div class="dots"></div>
+            <button class="arrow arrow-left" id="prev-dot">&#10094;</button>
            
+        <div class="dots"></div>
+        <button class="arrow arrow-right" id="next-dot">&#10095;</button>
         </div>
     </div>
 
