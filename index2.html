@@ -7,27 +7,27 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-        .card-body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Work Sans',sans-serif;
-            background-color: #000;
-            color: #fff;
+      
+          .card-body {
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: center;
-           
+            padding: 20px 0;
+            box-sizing: border-box;
+            background-color: black;
+            color: white;
         }
 
         .main-card-container {
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            position: relative;
-            background-color: #000;
         }
+ 
+        
 
         .phase-buttons {
         
@@ -36,7 +36,7 @@
          
         }
 
-        .phase-buttons button {
+        .phase-buttons #phase1-btn, #phase2-btn{
             background-color: black;
             color: white;
             border-radius: 25px;
@@ -54,7 +54,11 @@
             font-family: 'Anton', sans-serif;
         }
 
-        .phase-buttons button.active {
+        #phase1-btn.active {
+            background-color: #AC8C44;
+        }
+
+        #phase2-btn.active {
             background-color: #AC8C44;
         }
 
@@ -71,57 +75,53 @@
             width: 1600px; 
         }
 
-        .card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 100%;
-
-    position: relative;
-    height: 600px;
-    width: 1600px; 
-}
-
-.card {
-    position: absolute;
-    background-color: #fff;
+        .card {
+            position: absolute;
+    background-color: #1D1D1D;
     border-radius: 10%;
     box-shadow: 0 0 15px 10px #ac8c44;
     width: 500px;
     text-align: center;
-    color: #000;
+    color: white;
     transition: all 0.5s ease;
     padding-bottom: 20px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  
+    
+        }
+
+ .card:nth-child(1), .card:nth-child(5) {
+    
+    display: none;
 }
 
-.card:nth-child(1) {
-    transform: translate(-50%, -50%) translateX(-110%);
-    scale: 0.95;
-    filter: blur(5px);
-    opacity: 0.7;
-    z-index: 1;
-}
 
+.card:nth-child(4){
+    
+   
+    margin-left: 40px;
+    
+    scale: 0.9;
+ 
+    box-shadow: 10px 0 50px -5px #ac8c44, inset -10px 0 100px -5px rgba(0, 0, 0, 1) !important;
+}
 .card:nth-child(2) {
-    transform: translate(-50%, -50%);
-    scale: 1;
-    filter: blur(0);
-    opacity: 1;
-    z-index: 2;
-    margin-left: 10px;
+   
+   
+    scale: 0.9;
+   margin-left: -90px;
+   
+   box-shadow: 10px 0 50px -5px #ac8c44, inset -10px 0 100px -5px rgba(0, 0, 0, 1) !important;
 }
 
 .card:nth-child(3) {
-    transform: translate(-50%, -50%) translateX(110%);
-    scale: 0.95;
-    filter: blur(5px);
-    opacity: 0.7;
-    z-index: 1;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    
+    z-index: 2;
 }
+
         .price-container {
             display: flex;
             justify-content: space-between;
@@ -136,14 +136,14 @@
             color: #ac8c44;
             font-size: 48px;
             margin-left: 35px;
-            margin-top: 15px;
+            
         }
 
         .actual-price {
             font-size: 20px;
             margin-top: 5px;
             font-weight: bold;
-            color: #000;
+            color: white;
         }
 
         .table-wrapper {
@@ -158,22 +158,22 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+         
            
         }
 
         table th, table td {
             border: 1px solid #AC8C44;
             padding: 8px;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         th {
             background-color: transparent;
         }
 
-        .btn {
-            background-color: #fff;
+        .btnInsideCard {
+            background-color: #1D1D1D;
             color: #AC8C44;
             font-family: 'Anton', sans-serif;
             text-transform: uppercase;
@@ -189,21 +189,58 @@
             transition: outline .2s ease;
             z-index: 2;
             max-height: 50px;
-            max-width: 250px;
+            width: 70%;
         }
 
         .btn:hover {
             outline-width: 4px;
         }
 
-        .dots-container {
+        .arrows-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .arrow {
+            background: #ac8c44;
+            border: 2px solid #ac8c44;
+            font-size: 18px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+           
+            z-index: 2;
+        }
+     
+
+     .arrow:hover {
+            background: #1D1D1D;
+            color: #ac8c44;
+            box-shadow: 0 4px 8px rgba(172, 140, 68, 0.3);
+        }
+    
+        .arrow:active {
+            transform: scale(0.95);
+        }
+ 
+
+
+/* Osigurajmo da su strelice dobro poravnate s točkama */
+.dots-container {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  width: 100%;
-  overflow-x: auto;
-  padding: 10px 0;
+  gap: 10px; /* Razmak između strelica i točaka */
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 .dots {
@@ -214,10 +251,10 @@
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background-color: #fff;
+
   border: 2px solid #ac8c44;
   margin: 0 3px;
   cursor: pointer;
@@ -229,127 +266,245 @@
   background-color: #ac8c44;
 }
 
-.arrow-left, .arrow-right {
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #ac8c44;
-  cursor: pointer;
-  padding: 0 5px;
-  flex-shrink: 0;
-}
+ .funding-page-container {
+            margin-left: auto;
+            margin-right: auto;
+   
+            margin: 0;
+            background-color: black;
+            font-family: 'Anton', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .funding-animated-button {
+            position: relative;
+            background-color: transparent;
+            color: hsla(42, 72%, 47%, 1);
+            border: 2px solid hsla(42, 72%, 47%, 1);
+            border-radius: 40px;
+            padding: 25px 50px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            overflow: hidden;
+            transition: color 0.3s ease-in-out;
+            z-index: 1;
+         
+        }
+        .funding-animated-button::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: hsla(42, 72%, 47%, 1);
+            transition: height 0.3s ease-in-out;
+            z-index: -1;
+        }
+        .funding-animated-button:hover {
+            color: #FFFFFF;
+        }
+        .funding-animated-button:hover::before {
+            height: 100%;
+        }
         
 
-        @media (max-width: 768px) {
-            .card-container {
-                width: 100%;
-                height: 500px;
-                overflow: visible;
-                position: relative;
-            }
-
-            .card {
-                width: 90%; /* Promena sa fiksne širine na procenat */
-                max-width: 350px; /* Maksimalna širina */
-                box-shadow: 0 0 15px 10px #ac8c44;
-                position: absolute;
-                left: 50%;
-              
-                transform: translate(-50%, -50%) !important; /* Forsiranje centriranja */
-                transition: all 0.5s ease;
-            }
-
-            .card:nth-child(1), 
-            .card:nth-child(3) {
-                opacity: 0;
-                pointer-events: none;
-            }
-
-            .card:nth-child(2) {
-                display: block;
-                z-index: 2;
-                opacity: 1;
-            }
-    .dots-container {
-    margin-top: 40px;
-    margin-bottom: 20px;
-  }
-
-  .dot {
-    width: 15px;
-    height: 15px;
-    margin: 0 2px;
-  }
-
-  .arrow-left, .arrow-right {
-    font-size: 24px;
-    padding: 0 3px;
-  }
-
-
-   
-            
-    .phase-buttons {
-        margin-top: 20px;
-        margin-bottom: 60px;
+@media (max-width: 768px) {
+    .card-container {
+        width: 100%;
+        height: 520px;
+        overflow: visible;
+        position: relative;
     }
-            .phase-buttons button {
-                font-size: 18px;
-                padding: 5px 15px;
-                width: 150px;
-                height: 40px;
-               
-            }
 
-     
+    .card {
+        width: 100%;
+        max-width: 350px;
+        box-shadow: 0 0 15px 10px #ac8c44;
+        position: absolute;
+        left: 50%;
+        top: 45%;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        border-radius: 15%;
+        padding: 15px;
+       
+    }
 
-            .price {
-                font-size: 36px;
-                margin-left: 15px;
-            }
-
-            .actual-price {
-                font-size: 16px;
-            }
-
-            .table-wrapper td {
-                font-size: 12px;
-            }
-
-           
-
-            .phase-buttons button.active {
-                outline: 3px solid #ac8c44;
-            }
-
-            .phase-buttons button:hover {
-                outline: 4px solid #AC8C44;
-            }
-
-            
+    .card.sliding-out {
+            transform: translateX(-100%);
+            opacity: 0;
         }
+
+        .card.sliding-in {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+    .card:nth-child(1), 
+    .card:nth-child(2),
+    .card:nth-child(4),
+    .card:nth-child(5) {
+        display: none;
+    }
+
+    .card:nth-child(3) {
+        display: block;
+        z-index: 2;
+        margin-top: 0;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    .dots-container {
+        
+        margin-bottom: 20px;
+    }
+
+    .dot {
+        width: 6px;
+        height: 6px;
+        margin: 0 3px;
+    }
+
+    .arrow-left, .arrow-right {
+        font-size: 20px;
+        padding: 8px;
+        width: 35px;
+        height: 35px;
+       
+    }
+
+    .arrow-left {
+        left:   10px;
+    }
+
+    .arrow-right {
+        right: 10px;
+    }
+    .phase-buttons {
+        margin-bottom: 30px;
+    }
+
+    .phase-buttons button {
+        font-size: 16px;
+        padding: 5px 5px;
+        width: 110px;
+        height: 35px;
+    }
+
+    .price {
+        font-size: 32px;
+        margin-left: 10px;
+    }
+
+    .actual-price {
+        font-size: 14px;
+    }
+
+ 
+
+  
+
+    .table-wrapper td, .table-wrapper th {
+        font-size: 8px;
+        padding: 6px 4px;
+    }
+
+    .btnInsideCard {
+        font-size: 18px;
+    
+    }
+
+    .phase-buttons button.active {
+        outline: 2px solid #ac8c44;
+    }
+
+    .phase-buttons button:hover {
+        outline: 3px solid #AC8C44;
+    }
+
+    @media (max-width: 400px) {
+
+        .card {
+        width: 100%;
+        max-width: 350px;
+        box-shadow: 0 0 15px 10px #ac8c44;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 15%;
+        padding: 15px;
+       
+    }
+
+
+        .arrow-left {
+        left: 5px;
+    }
+
+    .arrow-right {
+        right: 5px;
+    }
+    }
+
+    /* Dodatna optimizacija za vrlo male ekrane */
+    @media (max-width: 360px) {
+        .card {
+            padding: 10px;
+        }
+
+        .price {
+            font-size: 28px;
+        }
+
+        .actual-price {
+            font-size: 12px;
+        }
+
+        .table-wrapper td, .table-wrapper th {
+            font-size: 10px;
+            padding: 4px 2px;
+        }
+
+        .btn {
+            font-size: 16px;
+            padding: 6px 12px;
+        }
+    }
+}
     </style>
 </head>
 <body class="card-body">
+
     <div class="main-card-container">
+        <h2>CHOOSE YOUR <span style="color: #ac8c44">BEST PLAN</span></h2>
+        <p style="text-align: center; white-space: pre-wrap; transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1); transition-duration: 0.65s;">Select your challenge, demonstrate that you have successful trading techniques, and generate substantial virtual profits to build your future.</p>
         <div class="phase-buttons">
             <button id="phase1-btn" class="active" onclick="selectPhase(1)">1 PHASE</button>
             <button id="phase2-btn" onclick="selectPhase(2)">2 PHASE</button>
         </div>
-
-        
+       
         <div class="card-container" id="card-container"></div>
+          <div class="arrows-container">
+              <button class="arrow arrow-left" id="prev-dot">&#10094;</button>
+              <button class="arrow arrow-right" id="next-dot">&#10095;</button>
+            </div>
         <div class="dots-container">
-            <button class="arrow arrow-left" id="prev-dot">&#10094;</button>
-            <div class="dots"></div>
-            <button class="arrow arrow-right" id="next-dot">&#10095;</button>
+        <div class="dots"></div>   
         </div>
+
+         <div class="funding-page-container">
+            <button class="funding-animated-button">GET FUNDED WITH 30% OFF</button>
+        </div>
+      
     </div>
 
     <script>
-        let currentIndex = 0;
-        let currentPhase = 1;
-        const cardElements = [];
         const cardsData = {
     1: [ // Phase 1 Data
         { 
@@ -537,92 +692,30 @@
     ]
 };
 
+let currentIndex = 1;
+let currentPhase = 1;
 
-
-function createDots() {
-  const dotsContainer = document.querySelector('.dots');
-  dotsContainer.innerHTML = '';
-  
-  const totalCards = cardsData[1].length + cardsData[2].length;
-  
-  for (let i = 0; i < totalCards; i++) {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    dot.addEventListener('click', () => goToCard(i));
-    dotsContainer.appendChild(dot);
-  }
-  
-  updateActiveDot();
-}
-
-function updateActiveDot() {
-  const dots = document.querySelectorAll('.dot');
-  const activeIndex = getGlobalIndex();
-  
-  dots.forEach((dot, index) => {
-    if (index === activeIndex) {
-      dot.classList.add('active');
-    } else {
-      dot.classList.remove('active');
-    }
-  });
-}
-
-function getGlobalIndex() {
-  return currentIndex + (currentPhase === 2 ? cardsData[1].length : 0);
-}
-
-function goToCard(globalIndex) {
-  const totalCards = cardsData[1].length + cardsData[2].length;
-  if (globalIndex < cardsData[1].length) {
-    currentPhase = 1;
-    currentIndex = globalIndex;
-  } else {
-    currentPhase = 2;
-    currentIndex = globalIndex - cardsData[1].length;
-  }
-  updateCardContents();
-  updateActiveDot();
-  updatePhaseButtons();
-}
-
-function initializeCards() {
-  const cardContainer = document.getElementById('card-container');
-  cardContainer.innerHTML = '';
-
-  for (let i = 0; i < 3; i++) {
+function createCard(cardData, position) {
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card';
-    createCardStructure(cardDiv);
-    cardContainer.appendChild(cardDiv);
-    cardElements.push(cardDiv);
-  }
+    cardDiv.style.transform = `translate(-50%, -50%) translateX(${position}%) scale(${Math.abs(position) <= 100 ? 1 : 0.9})`;
+    cardDiv.style.opacity = position === 0 ? '1' : '0.5';
+    cardDiv.style.filter = position === 0 ? 'blur(0px)' : 'blur(2px)';
+    cardDiv.style.zIndex = position === 0 ? '2' : '1';
 
-  updateCardContents();
-  updateActiveDot();
-  updatePhaseButtons();
-}
-
-
-function createCardStructure(cardDiv) {
     // Create price section
     const priceContainer = document.createElement('div');
     priceContainer.className = 'price-container';
-    
+
     const priceDiv = document.createElement('div');
     priceDiv.className = 'price';
-    
+    priceDiv.textContent = cardData.price;
+
     const rightContainer = document.createElement('div');
     rightContainer.style.display = 'flex';
     rightContainer.style.flexDirection = 'column';
     rightContainer.style.alignItems = 'center';
     rightContainer.style.marginRight = '35px';
-
-    const logoImg = document.createElement('img');
-    logoImg.src = "https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img/https://fundedx.com/wp-content/uploads/2024/03/X-Icon-Black-copy-2.png";
-    logoImg.style.width = '50px';
-    logoImg.style.height = '50px';
-    rightContainer.appendChild(logoImg);
 
     const priceText = document.createElement('div');
     priceText.textContent = 'PRICE';
@@ -631,6 +724,7 @@ function createCardStructure(cardDiv) {
 
     const actualPriceDiv = document.createElement('div');
     actualPriceDiv.className = 'actual-price';
+    actualPriceDiv.textContent = cardData.actualPrice;
     rightContainer.appendChild(actualPriceDiv);
 
     priceContainer.appendChild(priceDiv);
@@ -646,194 +740,237 @@ function createCardStructure(cardDiv) {
     headerRow.innerHTML = '<th>Feature</th><th>Phase 1</th><th>Phase 2</th><th>Funded</th>';
     table.appendChild(headerRow);
 
-    // Add rows for each feature
-    for (let i = 0; i < 8; i++) {
+    for (const [feature, values] of Object.entries(cardData.features)) {
         const row = document.createElement('tr');
-        row.innerHTML = '<td></td><td></td><td></td><td></td>';
+        row.innerHTML = `
+            <td>${feature}</td>
+            <td>${values.phase1 || '-'}</td>
+            <td>${values.phase2 || '-'}</td>
+            <td>${values.funded || '-'}</td>
+        `;
         table.appendChild(row);
     }
 
     tableWrapper.appendChild(table);
     cardDiv.appendChild(tableWrapper);
 
-    // Create button
     const fundedButton = document.createElement('button');
-    fundedButton.className = 'btn';
+    fundedButton.className = 'btnInsideCard';
     fundedButton.textContent = 'Get Funded';
-    cardDiv.appendChild(fundedButton);
-}
-
-function getCardData(offset) {
-  const totalCards = cardsData[1].length + cardsData[2].length;
-  let globalIndex = getGlobalIndex();
-  globalIndex = (globalIndex + offset + totalCards) % totalCards;
-  
-  let phase = globalIndex < cardsData[1].length ? 1 : 2;
-  let localIndex = phase === 1 ? globalIndex : globalIndex - cardsData[1].length;
-  
-  return { card: cardsData[phase][localIndex], phase: phase };
-}
-
-function updateCardContents() {
-  for (let i = -1; i <= 1; i++) {
-    const { card, phase } = getCardData(i);
-    const cardDiv = cardElements[i + 1];
-
-    // Update price
-    cardDiv.querySelector('.price').textContent = card.price;
-    cardDiv.querySelector('.actual-price').textContent = card.actualPrice;
-
-    // Update table contents
-    const tableRows = cardDiv.querySelectorAll('table tr');
-    Object.entries(card.features).forEach(([feature, values], rowIndex) => {
-      const cells = tableRows[rowIndex + 1].cells;
-      cells[0].textContent = feature;
-      cells[1].textContent = values.phase1 || '-';
-      cells[2].textContent = phase === 2 ? (values.phase2 || '-') : '-';
-      cells[3].textContent = values.funded || '-';
-    });
-
-    // Update button link
-    const button = cardDiv.querySelector('.btn');
-    button.onclick = () => {
-      window.open(card.link, '_blank');
+    fundedButton.onclick = () => {
+        window.open(cardData.link, '_blank');
     };
-    button.textContent = 'Get Funded';
-  }
+    cardDiv.appendChild(fundedButton);
+
+    return cardDiv;
 }
 
-function animateCards(direction) {
-            if (window.innerWidth <= 768) {
-                // Animacija za mobilne uređaje
-                const currentCard = cardElements[1];
-                const nextCard = cardElements[direction === 1 ? 0 : 2];
+function createCards() {
+    const cardContainer = document.getElementById('card-container');
+    cardContainer.innerHTML = '';
 
-                currentCard.animate([
-                    { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
-                    { opacity: 0, transform: 'translate(-50%, -50%) scale(0.8)' }
-                ], {
-                    duration: 300,
-                    easing: 'ease',
-                    fill: 'forwards'
-                });
+    const totalCards = cardsData[currentPhase].length;
 
-                nextCard.style.opacity = '0';
-                nextCard.style.transform = 'translate(-50%, -50%) scale(0.8)';
-                nextCard.style.display = 'block';
+    for (let i = -2; i <= 3; i++) {
+        const index = (currentIndex + i + totalCards) % totalCards;
+        const card = cardsData[currentPhase][index];
+        const cardDiv = createCard(card, i * 100);
+        if (Math.abs(i) > 1) {
+            cardDiv.style.display = 'none';
+        }
+        cardContainer.appendChild(cardDiv);
+    }
+}
 
-                nextCard.animate([
-                    { opacity: 0, transform: 'translate(-50%, -50%) scale(0.8)' },
-                    { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' }
-                ], {
-                    duration: 300,
-                    easing: 'ease',
-                    fill: 'forwards'
-                });
+function getNextPhaseAndIndex(currentPhase, currentIndex, direction) {
+    const phase1Length = cardsData[1].length;
+    const phase2Length = cardsData[2].length;
 
-                // Ažuriranje pozicija kartica nakon animacije
-                setTimeout(() => {
-                    cardElements.forEach((card, index) => {
-                        card.style.display = index === 1 ? 'block' : 'none';
-                        card.style.opacity = index === 1 ? '1' : '0';
-                        card.style.transform = 'translate(-50%, -50%) scale(1)';
-                    });
-                }, 300);
-            } else {
-                // Postojeća animacija za desktop
-                cardElements.forEach((card, index) => {
-                    const startPosition = (index - 1) * 110;
-                    const endPosition = (index - 1 + direction) * 110;
+    if (direction === 'next') {
+        if (currentPhase === 1 && currentIndex === phase1Length - 1) {
+            return { phase: 2, index: 0 };
+        } else if (currentPhase === 2 && currentIndex === phase2Length - 1) {
+            return { phase: 1, index: 0 };
+        } else {
+            return { phase: currentPhase, index: (currentIndex + 1) % cardsData[currentPhase].length };
+        }
+    } else { // direction === 'prev'
+        if (currentPhase === 1 && currentIndex === 0) {
+            return { phase: 2, index: phase2Length - 1 };
+        } else if (currentPhase === 2 && currentIndex === 0) {
+            return { phase: 1, index: phase1Length - 1 };
+        } else {
+            return { phase: currentPhase, index: (currentIndex - 1 + cardsData[currentPhase].length) % cardsData[currentPhase].length };
+        }
+    }
+}
 
-                    card.animate([
-                        { 
-                            transform: `translate(-50%, -50%) translateX(${startPosition}%)`,
-                            filter: index === 1 ? 'blur(0)' : 'blur(5px)',
-                            opacity: index === 1 ? '1' : '0.7',
-                            scale: index === 1 ? '1' : '0.95',
-                            zIndex: index === 1 ? '2' : '1'
-                        },
-                        { 
-                            transform: `translate(-50%, -50%) translateX(${endPosition}%)`,
-                            filter: index === 1 - direction ? 'blur(0)' : 'blur(5px)',
-                            opacity: index === 1 - direction ? '1' : '0.7',
-                            scale: index === 1 - direction ? '1' : '0.95',
-                            zIndex: index === 1 - direction ? '2' : '1'
-                        }
-                    ], {
-                        duration: 500,
-                        easing: 'ease',
-                        fill: 'forwards'
-                    });
-                });
-            }
+
+
+function updateCardPositions(direction) {
+    const cards = document.querySelectorAll('.card');
+    const animationDuration = 750;
+
+    cards.forEach((card, index) => {
+        const startPosition = (index - 2) * 100;
+        const endPosition = startPosition + (direction === 'next' ? -100 : 100);
+
+        const isCenter = startPosition === 0;
+        const isComingToCenter = (direction === 'next' && startPosition === 100) || (direction === 'prev' && startPosition === -100);
+        const isLeavingCenter = (direction === 'next' && startPosition === -100) || (direction === 'prev' && startPosition === 100);
+        const isComingToView = (direction === 'next' && startPosition === 200) || (direction === 'prev' && startPosition === -200);
+        const isLeavingView = (direction === 'next' && startPosition === -200) || (direction === 'prev' && startPosition === 200);
+
+        if (isComingToView) {
+            card.style.display = 'block';
         }
 
-function updatePhaseButtons() {
-  document.querySelectorAll('.phase-buttons button').forEach((btn, index) => {
-    if (index + 1 === currentPhase) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-  });
+        const startScale = isCenter ? 1 : 0.9;
+        const endScale = isComingToCenter ? 1 : (isLeavingCenter ? 0.9 : (Math.abs(endPosition) <= 100 ? 0.9 : 0.8));
+
+        const startOpacity = isCenter ? 1 : 0.5;
+        const endOpacity = isComingToCenter ? 1 : (Math.abs(endPosition) <= 100 ? 0.5 : 0);
+
+        const startBlur = isCenter ? 0 : 2;
+        const endBlur = isComingToCenter ? 0 : 2;
+
+        const startZIndex = isCenter ? 2 : 1;
+        const endZIndex = isComingToCenter ? 2 : 1;
+
+        // Always keep the card centered horizontally
+        const startTranslateX = '-50%';
+        const endTranslateX = '-50%';
+
+        // Use translateX for horizontal movement
+        const startOffsetX = `${startPosition}%`;
+        const endOffsetX = `${endPosition}%`;
+
+        const animation = card.animate([
+            { 
+                transform: `translate(${startTranslateX}, -50%) translateX(${startOffsetX}) scale(${startScale})`,
+                opacity: startOpacity,
+                filter: `blur(${startBlur}px)`,
+                zIndex: startZIndex
+            },
+            { 
+                transform: `translate(${endTranslateX}, -50%) translateX(${endOffsetX}) scale(${endScale})`,
+                opacity: endOpacity,
+                filter: `blur(${endBlur}px)`,
+                zIndex: endZIndex
+            }
+        ], {
+            duration: animationDuration,
+            easing: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
+            fill: 'forwards'
+        });
+
+        animation.onfinish = () => {
+            if (isLeavingView) {
+                card.style.display = 'none';
+            }
+            card.style.zIndex = endZIndex;
+        };
+    });
+
+    // Update currentPhase and currentIndex immediately
+    const { phase, index } = getNextPhaseAndIndex(currentPhase, currentIndex, direction);
+    currentPhase = phase;
+    currentIndex = index;
+
+    // Schedule the creation of new cards and updates
+    setTimeout(() => {
+        createCards();
+        updateActiveDot();
+        updatePhaseButtons();
+    }, animationDuration / 2); // Changed from animationDuration to animationDuration / 2
 }
 
-function selectPhase(phase) {
-  if (phase === currentPhase) return;
-  currentPhase = phase;
-  currentIndex = 0;
-  updateCardContents();
-  updateActiveDot();
-  updatePhaseButtons();
+function updatePhaseButtons() {
+    document.getElementById('phase1-btn').classList.toggle('active', currentPhase === 1);
+    document.getElementById('phase2-btn').classList.toggle('active', currentPhase === 2);
 }
 
 function slideToNextCard() {
-  const totalCards = cardsData[1].length + cardsData[2].length;
-  const globalIndex = getGlobalIndex();
-  const nextGlobalIndex = (globalIndex + 1) % totalCards;
-  
-  currentPhase = nextGlobalIndex < cardsData[1].length ? 1 : 2;
-  currentIndex = currentPhase === 1 ? nextGlobalIndex : nextGlobalIndex - cardsData[1].length;
-  
-  updateCardContents();
-  animateCards(-1);
-  updateActiveDot();
-  updatePhaseButtons();
+    updateCardPositions('next');
 }
 
 function slideToPreviousCard() {
-  const totalCards = cardsData[1].length + cardsData[2].length;
-  const globalIndex = getGlobalIndex();
-  const prevGlobalIndex = (globalIndex - 1 + totalCards) % totalCards;
-  
-  currentPhase = prevGlobalIndex < cardsData[1].length ? 1 : 2;
-  currentIndex = currentPhase === 1 ? prevGlobalIndex : prevGlobalIndex - cardsData[1].length;
-  
-  updateCardContents();
-  animateCards(1);
-  updateActiveDot();
-  updatePhaseButtons();
+    updateCardPositions('prev');
+}
+function createDots() {
+    const dotsContainer = document.querySelector('.dots');
+    dotsContainer.innerHTML = '';
+    
+    const totalDots = cardsData[1].length + cardsData[2].length;
+    
+    for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        dotsContainer.appendChild(dot);
+    }
+    
+    updateActiveDot();
 }
 
-// Initialize the cards and set up event listeners
-document.addEventListener('DOMContentLoaded', () => {
-  initializeCards();
-  createDots();
+function updateActiveDot() {
+    const dots = document.querySelectorAll('.dot');
+    const totalDotsPhase1 = cardsData[1].length;
+    const activeIndex = currentPhase === 1 ? currentIndex : totalDotsPhase1 + currentIndex;
+    
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
+    });
+}
 
-  let next = document.getElementById('next-dot');
-  let prev = document.getElementById('prev-dot');
 
-  if (next && prev) {
-    next.addEventListener('click', slideToNextCard);
-    prev.addEventListener('click', slideToPreviousCard);
-  } else {
-    console.error("Next or Prev button not found!");
-  }
 
-  document.querySelectorAll('.phase-buttons button').forEach((btn) => {
-    btn.addEventListener('click', () => selectPhase(parseInt(btn.id.charAt(5))));
-  });
-});
+function goToCard(index) {
+    const totalDotsPhase1 = cardsData[1].length;
+    let targetPhase, targetIndex;
+
+    if (index < totalDotsPhase1) {
+        targetPhase = 1;
+        targetIndex = index;
+    } else {
+        targetPhase = 2;
+        targetIndex = index - totalDotsPhase1;
+    }
+
+    if (targetPhase !== currentPhase || targetIndex !== currentIndex) {
+        const direction = (targetPhase > currentPhase) || (targetPhase === currentPhase && targetIndex > currentIndex) ? 'next' : 'prev';
+        currentPhase = targetPhase;
+        currentIndex = targetIndex;
+        updateCardPositions(direction);
+    }
+}
+
+function selectPhase(phase) {
+    if (phase === currentPhase) return;
+
+    const currentCardPrice = cardsData[currentPhase][currentIndex].price;
+    const targetPhaseCards = cardsData[phase];
+    const targetIndex = targetPhaseCards.findIndex(card => card.price === currentCardPrice);
+
+    if (targetIndex !== -1) {
+        currentPhase = phase;
+        currentIndex = targetIndex;
+        createCards();
+        updateActiveDot();
+        updatePhaseButtons();
+    }
+}
+
+// Initialization
+createDots()
+createCards();
+updatePhaseButtons();
+
+// Event listeners
+document.getElementById('next-dot').addEventListener('click', slideToNextCard);
+document.getElementById('prev-dot').addEventListener('click', slideToPreviousCard);
+document.getElementById('phase1-btn').addEventListener('click', () => selectPhase(1));
+document.getElementById('phase2-btn').addEventListener('click', () => selectPhase(2));
+
 
     </script>
 </body>
