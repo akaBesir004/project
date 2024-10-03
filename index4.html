@@ -694,6 +694,7 @@
 
 let currentIndex = 1;
 let currentPhase = 1;
+let isAnimating = false;
 
 function createCard(cardData, position) {
     const cardDiv = document.createElement('div');
@@ -771,7 +772,7 @@ function createCards() {
 
     const totalCards = cardsData[currentPhase].length;
 
-    for (let i = -2; i <= 3; i++) {
+    for (let i = -2; i <= 2; i++) {
         const index = (currentIndex + i + totalCards) % totalCards;
         const card = cardsData[currentPhase][index];
         const cardDiv = createCard(card, i * 100);
@@ -782,42 +783,47 @@ function createCards() {
     }
 }
 
-function getNextPhaseAndIndex(currentPhase, currentIndex, direction) {
-    const phase1Length = cardsData[1].length;
-    const phase2Length = cardsData[2].length;
-
-    if (direction === 'next') {
-        if (currentPhase === 1 && currentIndex === phase1Length - 1) {
-            return { phase: 2, index: 0 };
-        } else if (currentPhase === 2 && currentIndex === phase2Length - 1) {
-            return { phase: 1, index: 0 };
-        } else {
-            return { phase: currentPhase, index: (currentIndex + 1) % cardsData[currentPhase].length };
-        }
-    } else { // direction === 'prev'
-        if (currentPhase === 1 && currentIndex === 0) {
-            return { phase: 2, index: phase2Length - 1 };
-        } else if (currentPhase === 2 && currentIndex === 0) {
-            return { phase: 1, index: phase1Length - 1 };
-        } else {
-            return { phase: currentPhase, index: (currentIndex - 1 + cardsData[currentPhase].length) % cardsData[currentPhase].length };
-        }
+function getNextPhaseAndIndex(currentPhase, currentIndex) {
+    const currentPhaseLength = cardsData[currentPhase].length;
+    
+    if (currentIndex === currentPhaseLength - 1) {
+        // We're at the end of the current phase, switch to the other phase
+        const nextPhase = currentPhase === 1 ? 2 : 1;
+        return { phase: nextPhase, index: 0 };
+    } else {
+        // Move to the next card in the current phase
+        return { phase: currentPhase, index: currentIndex + 1 };
     }
 }
 
-
+function getPrevPhaseAndIndex(currentPhase, currentIndex) {
+    if (currentIndex === 0) {
+        // We're at the start of the current phase, switch to the other phase
+        const prevPhase = currentPhase === 1 ? 2 : 1;
+        return { phase: prevPhase, index: cardsData[prevPhase].length - 1 };
+    } else {
+        // Move to the previous card in the current phase
+        return { phase: currentPhase, index: currentIndex - 1 };
+    }
+}
 
 function updateCardPositions(direction) {
+    if (isAnimating) return;
+    isAnimating = true;
+
     const cards = document.querySelectorAll('.card');
-    const animationDuration = 400; // Smanjeno trajanje animacije za brži odziv
+    const animationDuration = 400; // Animation duration in milliseconds
     const totalCards = cardsData[currentPhase].length;
 
-    // Odmah ažurirajte currentPhase i currentIndex
-    const { phase, index } = getNextPhaseAndIndex(currentPhase, currentIndex, direction);
+    // Update currentPhase and currentIndex based on the direction
+    const { phase, index } = direction === 'next' 
+        ? getNextPhaseAndIndex(currentPhase, currentIndex)
+        : getPrevPhaseAndIndex(currentPhase, currentIndex);
+    
     currentPhase = phase;
     currentIndex = index;
 
-    // Pripremite nove pozicije za sve karte
+    // Prepare new positions for all cards
     const newPositions = [];
     for (let i = -2; i <= 3; i++) {
         newPositions.push((i * 100) + (direction === 'next' ? -100 : 100));
@@ -872,12 +878,12 @@ function updateCardPositions(direction) {
         };
     });
 
-    // Stvorite novu kartu na kraju niza
+    // Create a new card at the end of the array
     setTimeout(() => {
         const container = document.getElementById('card-container');
-        const newCardIndex = (currentIndex + (direction === 'next' ? 3 : -3) + totalCards) % totalCards;
+        const newCardIndex = (currentIndex + (direction === 'next' ? 2 : -2) + totalCards) % totalCards;
         const newCardData = cardsData[currentPhase][newCardIndex];
-        const newCard = createCard(newCardData, direction === 'next' ? 300 : -300);
+        const newCard = createCard(newCardData, direction === 'next' ? 200 : -200);
         
         if (direction === 'next') {
             container.appendChild(newCard);
@@ -885,7 +891,7 @@ function updateCardPositions(direction) {
             container.insertBefore(newCard, container.firstChild);
         }
 
-        // Uklonite kartu koja je izašla iz vidokruga
+        // Remove the card that went out of view
         if (direction === 'next') {
             container.removeChild(container.firstChild);
         } else {
@@ -894,7 +900,8 @@ function updateCardPositions(direction) {
 
         updateActiveDot();
         updatePhaseButtons();
-    }, animationDuration );
+        isAnimating = false; 
+    }, animationDuration);
 }
 
 function updatePhaseButtons() {
@@ -903,11 +910,15 @@ function updatePhaseButtons() {
 }
 
 function slideToNextCard() {
-    updateCardPositions('next');
+    if (!isAnimating) {
+        updateCardPositions('next');
+    }
 }
 
 function slideToPreviousCard() {
-    updateCardPositions('prev');
+    if (!isAnimating) {
+        updateCardPositions('prev');
+    }
 }
 function createDots() {
     const dotsContainer = document.querySelector('.dots');
@@ -918,6 +929,7 @@ function createDots() {
     for (let i = 0; i < totalDots; i++) {
         const dot = document.createElement('div');
         dot.classList.add('dot');
+        dot.addEventListener('click', () => goToCard(i));
         dotsContainer.appendChild(dot);
     }
     
@@ -934,42 +946,33 @@ function updateActiveDot() {
     });
 }
 
-
-
-function goToCard(index) {
+function goToCard(dotIndex) {
     const totalDotsPhase1 = cardsData[1].length;
     let targetPhase, targetIndex;
 
-    if (index < totalDotsPhase1) {
+    if (dotIndex < totalDotsPhase1) {
         targetPhase = 1;
-        targetIndex = index;
+        targetIndex = dotIndex;
     } else {
         targetPhase = 2;
-        targetIndex = index - totalDotsPhase1;
+        targetIndex = dotIndex - totalDotsPhase1;
     }
 
-    if (targetPhase !== currentPhase || targetIndex !== currentIndex) {
-        const direction = (targetPhase > currentPhase) || (targetPhase === currentPhase && targetIndex > currentIndex) ? 'next' : 'prev';
-        currentPhase = targetPhase;
-        currentIndex = targetIndex;
-        updateCardPositions(direction);
-    }
+    currentPhase = targetPhase;
+    currentIndex = targetIndex;
+    createCards();
+    updateActiveDot();
+    updatePhaseButtons();
 }
+
 
 function selectPhase(phase) {
     if (phase === currentPhase) return;
-
-    const currentCardPrice = cardsData[currentPhase][currentIndex].price;
-    const targetPhaseCards = cardsData[phase];
-    const targetIndex = targetPhaseCards.findIndex(card => card.price === currentCardPrice);
-
-    if (targetIndex !== -1) {
-        currentPhase = phase;
-        currentIndex = targetIndex;
-        createCards();
-        updateActiveDot();
-        updatePhaseButtons();
-    }
+    currentPhase = phase;
+    currentIndex = 0; // Uvijek počni od prve kartice u novoj fazi
+    createCards();
+    updateActiveDot();
+    updatePhaseButtons();
 }
 
 // Initialization
